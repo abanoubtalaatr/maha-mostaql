@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14">
+  <g id="down-arrow-to-a-square" transform="translate(0 57.714) rotate(-90)">
+    <g id="_x39__7_" transform="translate(43.714)">
+      <g id="Group_3614" data-name="Group 3614" transform="translate(0)">
+        <path id="Path_1258" data-name="Path 1258" d="M46.886,9.379l3.45,3.45a.577.577,0,0,0,.757,0l3.449-3.45a.5.5,0,0,0-.707-.707l-2.621,2.622V.5a.5.5,0,0,0-1,0V11.293L47.593,8.671a.5.5,0,0,0-.707.707ZM55.714,2h-1.5V3h1.5a1,1,0,0,1,1,1V14a1,1,0,0,1-1,1h-10a1,1,0,0,1-1-1V4a1,1,0,0,1,1-1h1.5V2h-1.5a2,2,0,0,0-2,2V14a2,2,0,0,0,2,2h10a2,2,0,0,0,2-2V4A2,2,0,0,0,55.714,2Z" transform="translate(-43.714)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 
 @include('partial.style')
 
 <body>
-@include('partial.header')
 <main>
-    @include('partial.slider')
-    @include('partial.about')
-    @include('partial.services')
-    @include('partial.video')
-    @include('partial.testmonial')
+    <!-- start  header section -->
+    @include('partial.header')
+    <!-- start new job section -->
+    @include('partial.jobs')
+    <!-- start step section -->
+    @include('partial.steps')
+    <!-- start download section -->
+    @include('partial.download')
+    <!-- start footer section -->
+    @include('partial.footer')
 </main>
-@include('partial.support')
 
-@include('partial.footer')
 @include('partial.scripts')
 </body>
 </html>

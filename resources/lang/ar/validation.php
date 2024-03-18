@@ -266,7 +266,7 @@ return [
         'logo_header' => 'لوجو أعلى الصفحة',
         'logo_footer' => 'لوجو أسفل الصفحة ',
         'type' => 'النوع ',
-        'link' => 'الرابط ',
+
         'icon' => 'أيقونة ',
         'name_bank.ar' => 'اسم البنك',
         'name_bank.en' => 'اسم البنك ',
@@ -513,7 +513,7 @@ return [
         'media' => 'الوسائط',
         'whatsapp_thumbnail' => 'صورة واتساب',
         'button_text' => 'نص زر النداء التحفيزي',
-        'link' => 'رابط النداء التحفيزي',
+        'link' => 'الرابط ',
         'campagin_id' => 'الحملة',
         'start_date' => 'تاريخ البداية',
         'gender' => 'النوع',
@@ -629,6 +629,11 @@ return [
         'brief_en' => 'الوصف المختصر باللغة الانجليزية',
         'customer_service_number' => 'رقم خدمة العملاء',
         'video_url' => 'رابط الفيديو',
-
+        "first_name" => "الاسم الاول",
+        'confirmation_password' => 'تآكيد كلمة المرور',
+        "specialty_id" => "التخصص",
+        "job_title"=> 'المسمي الوظيفي',
+        'about'  => 'نبذه عن',
+        "invoke_date" => 'تاريخ اكمال المشروع'
     ],
 ];

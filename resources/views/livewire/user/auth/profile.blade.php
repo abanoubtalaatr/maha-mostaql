@@ -1,203 +1,132 @@
-@extends('layouts.user')
-@section('content')
+<div>
+    <div class="nav-sm">
+        <div class="logo">
+            <img src="{{asset('website/assets/images/logo.png')}}" alt="">
+        </div>
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Toggle Menu</span>
+        </button>
+    </div>
+    <section class="main-dash">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-11">
+                    <div class="row">
+                        <!-- <div class="col-md-12"> -->
+                        <h2 class=" mb-5">
+                            البيانات الحساب الشخصي
+                        </h2>
 
-    <div >
-        <section class="head_banner">
-            <div class="layer">
-                &nbsp;
-            </div>
+                        @if(isset($message))
+                            <div class="alert alert-info">{{$message}}</div>
+                        @endif
+                        <!-- the right side -->
+                        <div class="col-lg-9 col-sm-12 div-form">
+                            <form class="mt-2 add-job">
+                                <!--  -->
+                                <div class="d-flex gap-3 first mb-4">
+                                    <input type="text" wire:model="form.first_name" class="form-control form-inline shadow" placeholder="الاسم الاول" id="input1">
 
-        </section>
-        <section class="profile">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 position-relative">
-                        <div class="col-12 position-relative">
-                            <div class="circle">
-                                <img id="image-preview" style="max-width: 100%;" src="{{ isset($photo) ? $photo->temporaryUrl() : (auth()->user()->avatar ? asset('uploads/' . auth()->user()->avatar) : asset('website/assets/images/public/prof.png')) }}" alt="">
-                            </div>
-                            <div class="p-image">
-                                <img class="upload-button" src="{{ asset('website/assets/images/public/ed-pen.svg') }}">
-                                <input type="file" id="photo" class="file-upload" accept="image/png">
+                                    <input type="text" wire:model="form.last_name" class="form-control shadow"  placeholder="اسم العائله" id="input2">
+
+                                </div>
+                                @error('form.first_name') <p class="text-danger">{{$message}}</p> @enderror
+                                @error('form.first_name') <p class="text-danger">{{$message}}</p> @enderror
+
+
+                                <!--  -->
+                                <div class="form-group first mb-4">
+                                    <input type="text" wire:model="form.email" class="form-control shadow" placeholder="البريد الالكتروني" id="input3">
+                                    @error('form.email') <p class="text-danger">{{$message}}</p> @enderror
+
+                                </div>
+                                <div class="form-group first mb-4">
+                                    <input type="text" wire:model="form.mobile" class="form-control shadow" placeholder="رقم الجوال" id="input4">
+                                    @error('form.mobile') <p class="text-danger">{{$message}}</p> @enderror
+
+                                </div>
+                                <div class="form-group first mb-4">
+                                    <select wire:model="form.country_id" class="form-control shadow" id="input5">
+                                        <option value="">اختر الدولة</option>
+                                        @foreach ($countries as $country)
+                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('form.country_id') <p class="text-danger">{{$message}}</p> @enderror
+
+                                </div>
+                                <!--  -->
+                                <div class="d-flex mb-4 gap-3">
+                                    <select wire:model="form.specialty_id" class="form-control shadow" id="input6">
+                                        <option value="">اختر التخصص</option>
+                                        @foreach ($specialties as $specialty)
+                                            <option value="{{ $specialty->id }}">{{ $specialty->name }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    <input type="text" wire:model="form.job_title" class="form-control shadow" id="input7" placeholder="المسمى الوظيفي">
+
+                                </div>
+                                @error('form.specialty_id') <p class="text-danger">{{$message}}</p> @enderror
+                                @error('form.job_title') <p class="text-danger">{{$message}}</p> @enderror
+
+                                <!--  -->
+                                <div class="form-group first mb-4">
+                                    <textarea wire:model="form.about" class="form-control shadow h-12 resize-none" rows="5" placeholder="النبذة التعريفية" id="input8"></textarea>
+
+                                </div>
+                                @error('form.about') <p class="text-danger">{{$message}}</p> @enderror
+
+                                <button  wire:click="update" type="button" class="btn btn-1 mb-3 ms-2">
+                                    حفظ
+                                </button>
+
+                                <div class="mt-5 d-sm-grid-2">
+
+                                    {{--                                    <button type="button" class="btn btn-outline-secondary mb-3 me-2">--}}
+{{--                                        رجوع--}}
+{{--                                    </button>--}}
+                                </div>
+                            </form>
+                        </div>
+                        <div class="custom-file-upload">
+                            @if($photo)
+                                <img style='max-width:100%' src="{{$photo->temporaryUrl()}}" alt="">
+                            @else
+                                @isset($partner)
+                                    <img style='max-width:100%' src="{{$partner->picture_url}}" alt="">
+                                @endisset
+                            @endif
+                            <img src="{{asset('frontAssets')}}/imgs/wallet/upload.svg" alt="">
+                            <span>@lang('validation.attributes.image')</span>
+                            <input wire:model='photo' class='form-control @error('image') is-invalid @enderror' type="file"/>
+                            @error('image') <p class="text-danger">{{$message}}</p> @enderror
+                        </div>
+                        <input type="file" wire:model="photo" id="photo" class="form-control">
+
+                        <!-- end of the right side -->
+                        <!-- left side -->
+                        <div class="col-lg-3 col-sm-12 div-img">
+                            <div class="shadow px-4 py-4 d-flex flex-column align-items-center rad-20">
+                                <div class="project-image-containerr shadow">
+
+                                    <img src="{{asset('website/assets/images/Avatar wrap.png')}}">
+                                </div>
+                                <button class="btn btn-1 px-4 mt-3 w-100">
+                                    تغيير الصورة
+                                </button>
+                                <button class="btn btn-outline-primary px-4 mt-3 w-100 rad-20">
+                                    ازاله الصوره
+                                </button>
                             </div>
                         </div>
-
                     </div>
-                    <div class="col-12">
-                        @isset($message)
-                            <span class="alert alert-info">{{$message}}</span>
-                        @endif
-                            <form class="sign_box row sign_box_prof" method="POST" action="{{ route('user.profile.update') }}" enctype="multipart/form-data">
-                                @csrf
-                                @method('POST')
-                                <input type="hidden" id="image-data" name="image_data">
-
-                                <div class=" mb-3  col-md-6">
-                                <label class="form-label" for="user">@lang('site.full_name')</label>
-
-                                <div class="input-group border rounded">
-                                    <span class="input-group-text bg-transparent border-0"><img src="{{asset('website/assets/images/auth/user.svg')}}" alt=""></span>
-                                    <input   type="text" class="form-control bg-transparent border-0" name="username" id="user" value="{{auth()->user()->username}}">
-                                </div>
-                                @error('username')<p style='color:red'> {{$message}} </p>@enderror
-
-                            </div>
-                            <div class="mb-3  col-md-6">
-                                <label class="form-label" for="mail"> @lang('site.email')</label>
-
-                                <div class="input-group  border rounded">
-                                    <span class="input-group-text bg-transparent border-0"><img src="{{asset('website/assets/images/auth/msg.svg')}}" alt=""></span>
-                                    <input type="email"  class="form-control bg-transparent border-0" name="email" id="mail" value="{{auth()->user()->email}}">
-                                </div>
-                                @error('email')<p style='color:red'> {{$message}} </p>@enderror
-
-                            </div>
-                            <div class="mb-3  col-md-6">
-                                <label class="form-label" for="add">@lang('site.address')</label>
-
-                                <div class="input-group  border rounded">
-                                    <input id="search-input" class="form-control mb-3 bg-transparent border-0 pac-target-input"  type="text" placeholder="Search for places">
-
-                                </div>
-                                <div id="map"></div>
-                            </div>
-                            <div class=" mb-3  col-md-6">
-                                <label class="form-label" for="user">@lang('site.phone_number')</label>
-
-                                <div class="input-group border rounded">
-                                    <input  type="text" class="form-control bg-transparent border-0" id="user" name="mobile" value="{{auth()->user()->mobile}}" >
-                                    <span class="input-group-text bg-transparent border-0">+966 </span>
-
-                                </div>
-                                @error('mobile')<p style='color:red'> {{$message}} </p>@enderror
-
-                            </div>
-                                <input hidden name="latitude" >
-                                <input hidden name="longitude" >
-                            <div class="mb-4 col-md-3">
-                                <button type="submit"  class="btn btn-1 px-5 ">@lang('site.edit')</button>
-                            </div>
-
-                        </form>
-                    </div>
+                    <!-- end of left -->
+                    <!-- </div> -->
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-@endsection
-<script src="{{ asset('website/assets/js/jquery.js') }}"></script>
-<script>
-    var marker; // Declare marker variable outside the function
-    window.addEventListener('load', function () {
-        initMap();
-        initImagePreview();
-
-    });
-    function initImagePreview() {
-        // Get the file input element
-        var input = document.getElementById('photo');
-
-        // Add event listener for file input change
-        input.addEventListener('change', function () {
-            var file = input.files[0];
-            var reader = new FileReader();
-
-            // When file is loaded, update image source
-            reader.onload = function (e) {
-                document.getElementById('image-preview').src = e.target.result;
-                document.getElementById('image-data').value = e.target.result;
-
-            };
-
-            // Read file as data URL
-            reader.readAsDataURL(file);
-        });
-    }
-    var marker; // Declare marker variable outside the function
-
-    function initMap() {
-        var defaultLatitude = parseFloat("{{ auth()->user()->latitude }}");
-        var defaultLongitude = parseFloat("{{ auth()->user()->longitude }}");
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: defaultLatitude, lng: defaultLongitude },
-            zoom: 8
-        });
-         marker = new google.maps.Marker({
-            position: { lat: defaultLatitude, lng: defaultLongitude },
-            map: map,
-            title: 'Default Location'
-        });
-
-        var input = document.getElementById('search-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-
-        var marker; // Declare marker variable outside the functions
-
-        map.addListener('bounds_changed', function () {
-            searchBox.setBounds(map.getBounds());
-        });
-
-        searchBox.addListener('places_changed', function () {
-            var places = searchBox.getPlaces();
-
-            if (places.length === 0) {
-                return;
-            }
-
-            var bounds = new google.maps.LatLngBounds();
-            places.forEach(function (place) {
-                if (!place.geometry || !place.geometry.location) {
-                    console.log('Returned place contains no geometry');
-                    return;
-                }
-
-                // Clear existing marker (if any)
-                if (marker) {
-                    marker.setMap(null);
-                }
-
-                marker = new google.maps.Marker({
-                    position: place.geometry.location,
-                    map: map,
-                    title: place.name
-                });
-
-                bounds.extend(place.geometry.location);
-            });
-
-            map.fitBounds(bounds);
-
-            var selectedPlace = places[0];
-            // Update hidden inputs with latitude and longitude values
-            document.getElementsByName('latitude')[0].value = selectedPlace.geometry.location.lat();
-            document.getElementsByName('longitude')[0].value = selectedPlace.geometry.location.lng();
-        });
-
-        // Add click event listener on the map
-        map.addListener('click', function (event) {
-            // Clear existing marker (if any)
-            if (marker) {
-                marker.setMap(null);
-            }
-
-            // Add a new marker at the clicked location
-            marker = new google.maps.Marker({
-                position: event.latLng,
-                map: map,
-                title: 'Clicked Location'
-            });
-
-            // Update hidden inputs with latitude and longitude values
-            document.getElementsByName('latitude')[0].value = event.latLng.lat();
-            document.getElementsByName('longitude')[0].value = event.latLng.lng();
-        });
-    }
-
-
-</script>
-
-
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTYfF-dNzmHzNxFDDK-AvqiZ7DIXvN6ZU&libraries=places&callback=initMap" async defer></script>
+</div>

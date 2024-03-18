@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -14,6 +15,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $guarded = [];
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -22,6 +24,11 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
 
     public function notifications()
     {
@@ -45,35 +52,18 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
             url('uploads/pics/' . $this->avatar);
     }
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($query) {
-            $query->default_language = app()->getLocale();
-            $query->resend_verification_code_num = 1;
-        });
-    }
-
-
-    public function cars()
-    {
-        return $this->hasMany(Car::class);
-    }
-
     //JWT
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
-
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function works()
+    {
+        return $this->hasMany(Work::class);
     }
 }

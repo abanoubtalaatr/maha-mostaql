@@ -2,44 +2,42 @@
 
 namespace App\Http\Livewire\User\Auth;
 
+use App\Models\Country;
 use App\Models\User;
-use App\Services\GenerateCodeService;
+use Illuminate\Http\Request;
 use Livewire\Component;
-
+use App\Http\Livewire\Traits\ValidationTrait;
 class Signup extends Component
 {
+    use ValidationTrait;
+
     public $step = 1 ;
     public $form;
     public $mobile;
     public $message;
-    public $username, $email, $latitude, $longitude;
 
-    public function mount($mobile)
+    public $countries;
+
+
+    public function mount(Request $request)
     {
-        $this->mobile = $mobile;
-        $this->latitude = 23.8859;
-        $this->longitude = 45.0792;
+        if($request->has('account_type')){
+            if($request->input('account_type') == 'مستقل') {
+                $this->form['account_type'] = 'freelancer';
+            }else{
+                $this->form['account_type'] = 'project_owner';
+            }
+        }
+
+        $this->countries = Country::query()->get();
 
     }
-
-    public function updateCoordinates($latitude, $longitude)
+    public function store(Request $request)
     {
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
-    }
 
-    public function store()
-    {
         $this->validate();
-        $this->form['email'] = $this->email;
-        $this->form['username'] = $this->username;
-        $this->form['latitude'] = $this->latitude;
-        $this->form['longitude'] = $this->longitude;
 
-        $user = User::query()->whereMobile($this->mobile)->first();
-
-        auth('users')->loginUsingId($user->id);
-        $user->update($this->form);
+        $user = User::query()->create($this->form);
 
         return redirect()->to(route('home'));
 
@@ -48,14 +46,14 @@ class Signup extends Component
     public function getRules()
     {
         return [
-            'username' => ['required', 'string', 'min:3','max:50'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'latitude' => ['nullable',],
-            'longitude' => ['nullable'],
+            'form.first_name' => ['required', 'string', 'min:3','max:50'],
+            'form.last_name' => ['required'],
+            'form.email' => ['required', 'email', 'unique:users,email'],
+            'form.password' => ['required', 'min:3'],
+            'form.country_id' => ['required', 'exists:countries,id'],
+            'form.mobile' => ['required', 'string', 'min:8', 'unique:users,mobile'],
         ];
     }
-
-
 
     public function render()
     {

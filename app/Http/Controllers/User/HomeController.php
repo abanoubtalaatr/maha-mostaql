@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use App\Models\Opinion;
 use App\Models\Page;
 use App\Models\Service;
@@ -14,11 +15,13 @@ class HomeController extends Controller{
     public function index()
     {
         $sliders = Slider::query()->active()->get();
-        $settings = Setting::query()->first();
+
         $about = Page::query()->find(10);
         $service = Page::query()->find(11);
-        $services = Service::query()->active()->get();
+
         $testmoinals = Opinion::query()->active()->get();
-        return view('welcome', compact('sliders', 'settings', 'about', 'service', 'services','testmoinals'));
+
+        $countries = Country::query()->get();
+        return view('welcome', compact('sliders', 'about', 'service','testmoinals','countries'));
     }
 }

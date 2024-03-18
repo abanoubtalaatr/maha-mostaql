@@ -1,145 +1,105 @@
+<main>
+    <div class="d-lg-flex half">
+        <div class="bg order-1 order-md-2">
+            <img src="{{asset('website/assets/images/log-in-layer.png')}}" alt="" class="login-layer">
+        </div>
 
-<section class="auth">
-    <div class="layer">
-    </div>
-    <div class="container-fluid">
-        <div class="row justify-content-center align-items-center">
-<div class="col-lg-5">
-    <div class="sign_box text-center">
-        <img src="{{asset('website/assets/images/auth/logo.svg')}}" alt="">
-        <form class="mt-lg-5 mt-3">
-            <div class=" mb-3 text-end">
-                <label class="form-label" for="user">الاسم بالكامل</label>
+        <div class="contents order-2 order-md-1">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-10">
+                        <div class="logo-box">
+                            <img src="{{asset('website/assets/images/logo-login.png')}}" alt="">
+                        </div>
+                        <div class="log-dis">
+                            <h3 class="mb-2 t-color-primary">انشاء حساب جديد</h3>
+                            <p class="mb-4">
+                                من فضلك ادخل تلك البيانات حتى يتم انشاء حساب بكل سهوله و يسر
+                            </p>
+                        </div>
 
-                <div class="input-group border rounded">
-                    <span class="input-group-text bg-transparent border-0"><img src="{{asset('website/assets/images/auth/user.svg')}}" alt=""></span>
-                    <input  wire:model.defer="username"  type="text" class="form-control bg-transparent border-0" id="user">
+                        <form class="mt-2">
+                            <div class="form-group first mb-4">
+                                <div class="d-flex gap-3">
+                                    <input type="text" wire:model="form.first_name" class="form-control shadow" placeholder="الاسم الاول" id="firstname">
+                                    <input type="text" wire:model="form.last_name" class="form-control shadow" placeholder="اسم العائلة" id="lastname">
+
+                                    <input hidden name="account_type" wire:model="form.account_type" value="{{request()->input('account_type')}}">
+                                </div>
+                                @error('form.first_name') <p class="text-danger">{{$message}}</p> @enderror
+                                @error('form.last_name') <p class="text-danger">{{$message}}</p> @enderror
+
+                            </div>
+
+                            <div class="form-group last mb-4">
+                                <input type="email" class="form-control shadow" wire:model="form.email" placeholder="البريد الالكتروني" id="useremail">
+                                @error('form.email') <p class="text-danger">{{$message}}</p> @enderror
+
+                            </div>
+
+                            <div class="form-group last mb-4">
+                                <input type="text" class="form-control shadow" wire:model="form.mobile" placeholder="رقم جوالك" id="phone">
+                                @error('form.mobile') <p class="text-danger">{{$message}}</p> @enderror
+
+                            </div>
+
+                            <div class="form-group last mb-4">
+                                <select class="form-control shadow" id="countryDropdown" wire:model="form.country_id">
+                                    <option value="">اختر الدولة</option>
+                                    @foreach($countries as $country)
+                                        <option value="{{$country->id}}">{{$country->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('form.country_id') <p class="text-danger">{{$message}}</p> @enderror
+                            </div>
+
+                            <div class="form-group last mb-4">
+                                <input id="password-field" type="password" wire:model="form.password" class="form-control shadow" placeholder="كلمة المرور">
+                                @error('form.password') <p class="text-danger">{{$message}}</p> @enderror
+
+                            </div>
+
+                            <div class="d-grid text-center">
+                                <!-- change this <a> to button later   -->
+                                <button  wire:click="store" href="dashboard-explore-projects.html" type="button" class="btn btn-1 mb-2 shadow">
+                                    انشاء الحساب
+                                </button>
+                                <!--  -->
+                                <a type="button" href="{{route('login.google')}}"  class="btn btn-1 mb-2 shadow d-flex align-items-center justify-content-between px-4 btn-google-style">
+                                    <span> تسجيل الدخول عبر البريد الالكتروني </span>
+                                    <img src="{{asset('website/assets/images/google.webp')}}" class="w-1-3">
+                                </a>
+
+                                <a href="{{route('user.login')}}" class="sign-in-link mt-2 mb-4">لديك حساب؟ <span>سجل دخول</span></a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <div class="col-md-7 mt-5">
+                            00
+                          </div> -->
                 </div>
-                @error('username')<p style='color:red'> {{$message}} </p>@enderror
-
             </div>
-            <div class="mb-3 text-end">
-                <label class="form-label" for="mail"> البريد الالكترونى</label>
-
-                <div class="input-group  border rounded">
-                    <span class="input-group-text bg-transparent border-0"><img src="{{asset('website/assets/images/auth/msg.svg')}}" alt=""></span>
-                    <input  wire:model.defer="email"  type="email" class="form-control bg-transparent border-0" id="mail">
-                </div>
-                @error('email')<p style='color:red'> {{$message}} </p>@enderror
-
-            </div>
-            <div class="mb-3 text-end">
-                <label class="form-label" for="add">العنوان</label>
-
-                <div class="input-group  border rounded">
-                    <input type="text" id="search-input" class="form-control mb-3 bg-transparent border-0 pac-target-input" placeholder=" " autocomplete="off">
-                </div>
-                <div id="map" wire:ignore style="height: 400px; position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"><div class="gm-err-container"><div class="gm-err-content"><div class="gm-err-icon"><img src="https://maps.gstatic.com/mapfiles/api-3/images/icon_error.png" alt="" draggable="false" style="user-select: none;"></div><div class="gm-err-title">Oops! Something went wrong.</div><div class="gm-err-message">This page didn't load Google Maps correctly. See the JavaScript console for technical details.</div></div></div></div></div>
-
-            </div>
-            <button type="button" wire:click="store" class="btn btn-1 px-5 mt-3">@lang('site.send')</button>
-
-        </form>
+        </div>
     </div>
-</div>
-<div class="col-lg-1">
-
-</div>
-<div class="col-lg-6">
-    <div class="sign_bg">
-        <img src="{{asset('website/assets/images/auth/man.jpg')}}" alt="">
-    </div>
-</div>
-</div>
-</div>
-</section>
-
-<script src="{{asset('website/assets/js/jquery.js')}}"></script>
-
+</main>
 
 <script>
-    window.addEventListener('load', function () {
-        initMap();
+    let activeValue = "مستقل";
+    const cards = document.querySelectorAll(".card");
+    const dybtn = document.querySelector(".dy-btn");
 
+    dybtn.textContent = `سجل ك${activeValue}`;
+
+    cards.forEach((card) => {
+        card.addEventListener("click", (e) => {
+            if (card.contains(e.target)) {
+                activeValue = card.getAttribute("value");
+                dybtn.textContent = `سجل ك${activeValue}`;
+                cards.forEach((c) => c.classList.remove("active-card"));
+                card.classList.add("active-card");
+            }
+        });
     });
-    function initMap() {
-        var defaultLatitude = {{env("DEFAULT_LATITUDE")}};
-        var defaultLongitude ={{env("DEFAULT_LONGITUDE")}};
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: defaultLatitude, lng: defaultLongitude },
-            zoom: 6
-        });
-        marker = new google.maps.Marker({
-            position: { lat: defaultLatitude, lng: defaultLongitude },
-            map: map,
-            title: 'Default Location'
-        });
-
-        var input = document.getElementById('search-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-
-        var marker; // Declare marker variable outside the functions
-
-        map.addListener('bounds_changed', function () {
-            searchBox.setBounds(map.getBounds());
-        });
-
-        searchBox.addListener('places_changed', function () {
-            var places = searchBox.getPlaces();
-
-            if (places.length === 0) {
-                return;
-            }
-
-            var bounds = new google.maps.LatLngBounds();
-            places.forEach(function (place) {
-                if (!place.geometry || !place.geometry.location) {
-                    console.log('Returned place contains no geometry');
-                    return;
-                }
-
-                // Clear existing marker (if any)
-                if (marker) {
-                    marker.setMap(null);
-                }
-
-                marker = new google.maps.Marker({
-                    position: place.geometry.location,
-                    map: map,
-                    title: place.name
-                });
-
-                bounds.extend(place.geometry.location);
-            });
-
-            map.fitBounds(bounds);
-
-            var selectedPlace = places[0];
-            // Update hidden inputs with latitude and longitude values
-        @this.latitude = selectedPlace.geometry.location.lat();
-        @this.longitude = selectedPlace.geometry.location.lng();
-        });
-
-        // Add click event listener on the map
-        map.addListener('click', function (event) {
-            // Clear existing marker (if any)
-            if (marker) {
-                marker.setMap(null);
-            }
-
-            // Add a new marker at the clicked location
-            marker = new google.maps.Marker({
-                position: event.latLng,
-                map: map,
-                title: 'Clicked Location'
-            });
-
-            // Update hidden inputs with latitude and longitude values
-        @this.latitude = selectedPlace.geometry.location.lat();
-        @this.longitude = selectedPlace.geometry.location.lng();
-        });
-    }
 </script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFOnpDpii0DWz5bYVWvUzL+/9cCcyQ983Y70ZI3vfu7WIPcBSBIlServiceClientQ9Gt" crossorigin="anonymous"></script>

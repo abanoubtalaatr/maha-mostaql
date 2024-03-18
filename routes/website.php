@@ -11,51 +11,38 @@ Route::group([
 ], function () {
 
     Route::get('/', [\App\Http\Controllers\User\HomeController::class,'index'])->name('home');
-    Route::view('test', 'test');
     Route::get('page/{page}', \App\Http\Livewire\User\Page::class)->name('page');
     Route::get('/services', \App\Http\Livewire\User\Service\Index::class)->name('services.index');
     Route::get('/services/{service}', \App\Http\Livewire\User\Service\Show::class)->name('services.show');
     Route::get('/about', \App\Http\Livewire\User\About::class)->name('about');
 
+    Route::view('error', 'livewire.user.error')->name('error');
+
+    Route::get('/login/google', [\App\Http\Controllers\GoogleController::class, 'redirectToGoogle'])->name('login.google');
+    Route::get('/login/google/callback', [\App\Http\Controllers\GoogleController::class, 'handleGoogleCallback']);
     Route::get('contact', \App\Http\Livewire\User\ContactUs::class)->name('contact');
 
     Route::group(['as' => 'user.', 'prefix' => 'user/'], function () {
         Route::get('login', \App\Http\Livewire\User\Auth\Login::class)->name('login')->middleware('checkUserIsLogin');
-        Route::get('verify-code/{mobile}', \App\Http\Livewire\User\Auth\VerifyCode::class)->middleware('checkUserIsLogin')->name('verify_code');
-        Route::get('sign-up/{mobile}', \App\Http\Livewire\User\Auth\Signup::class)->middleware('checkUserIsLogin')->name('signup');
+        Route::get('forgot-password', \App\Http\Livewire\User\Auth\ForgotPassword::class)->middleware('checkUserIsLogin')->name('forgot_password');
+        Route::get('sign-up', \App\Http\Livewire\User\Auth\Signup::class)->middleware('checkUserIsLogin')->name('signup');
+        Route::get('sign-up-as', \App\Http\Livewire\User\Auth\SignupAs::class)->middleware('checkUserIsLogin')->name('signupas');
 
         Route::group(['middleware' => 'auth'], function () {
             Route::get('notifications', \App\Http\Livewire\User\Notification::class)->name('notifications');
             Route::get('logout', \App\Http\Livewire\User\Auth\Logout::class)->name('logout');
-            Route::get('profile', [\App\Http\Controllers\User\ProfileController::class,'show'])->name('profile');
-            Route::post('profile', [\App\Http\Controllers\User\ProfileController::class,'update'])->name('profile.update');
+            Route::get('profile', \App\Http\Livewire\User\Auth\Profile::class)->name('profile');
+            Route::get('change-password', \App\Http\Livewire\User\Dashboard\ChangePassword::class)->name('change_password');
 
-            Route::get('cars/create', App\Http\Livewire\User\Car\Create::class)->name('cars.create');
-            Route::get('cars', App\Http\Livewire\User\Car\Index::class)->name('cars');
-            Route::get('cars/{car}', App\Http\Livewire\User\Car\Edit::class)->name('cars.edit');
-            Route::get('cars/{car}/delete', App\Http\Livewire\User\Car\Delete::class)->name('cars.delete');
 
-            Route::get('services/create', App\Http\Livewire\User\Service\Create::class)->name('services.create');
-
-            //orders
-            Route::get('orders', App\Http\Livewire\User\Order\Index::class)->name('orders');
-            Route::get('orders/{order}', App\Http\Livewire\User\Order\Show::class)->name('orders.show');
-
-           Route::post('update-price',\App\Http\Controllers\User\SubServiceInSessionController::class )->name('update-price');
-
-           Route::get('opinion/{order}', App\Http\Livewire\User\Opinion\Create::class)->name('opinion');
-
-           Route::get('card/response', [\App\Http\Controllers\User\PaymentController::class,'payment_response'])->name('card_payment');
-           Route::get('payment-success',\App\Http\Livewire\User\PaymentSuccess::class)->name('payment.success');
-           Route::get('payment-fail', \App\Http\Livewire\User\PaymentFail::class)->name('payment.failed');
-
-           Route::get('pay-order/{order}', function (\Illuminate\Http\Request $request, $order){
-               $urWay = new UrWayService();
-               $order = \App\Models\Order::query()->find($order);
-
-               $result = $urWay->pay($request,$order->total, "$order->id",'service');
-               return redirect()->to($result);
-           })->name('pay.order');
+            Route::group(['prefix' => 'client', 'as' => 'client.'], function (){
+               Route::group(['prefix' => 'my-works', 'as' => 'my_works.'], function (){
+                   Route::get('/', \App\Http\Livewire\User\Dashboard\MyWorks\Index::class)->name('index');
+                   Route::get('/create', \App\Http\Livewire\User\Dashboard\MyWorks\Create::class)->name('create');
+                   Route::get('/{work}', \App\Http\Livewire\User\Dashboard\MyWorks\Show::class)->name('show');
+                   Route::get('/{work}/edit', \App\Http\Livewire\User\Dashboard\MyWorks\Edit::class)->name('edit');
+               });
+            });
 
         });/*authenticated users*/
 

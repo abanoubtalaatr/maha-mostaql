@@ -1,6 +1,6 @@
 <?php
 return [
-    'site_title' => 'بوجي',
+    'site_title' => 'مستقل',
     'title_ar' => 'الإسم بالعربية',
     'title_en' => 'الإسم بالانجليزية',
     'status' => 'الحالة',
@@ -611,5 +611,9 @@ return [
     'payment_success_details' => 'تم الدفع بنجاح يمكنك تصفح طلباتك الان',
     'payment_fail' => 'فشل في الدفع !',
     'payment_fail_details' => 'فشل ف الدفع برجاء حاول مره اخري في وقت لاحق !',
-    'can_not_delete_this_car' => "لايمكن حذف هذه السياره لوجود طلبات صيانه سابقه عليها"
+    'can_not_delete_this_car' => "لايمكن حذف هذه السياره لوجود طلبات صيانه سابقه عليها",
+    "date_of_complete_project" => "تاريخ اكتمال المشروع",
+    "views" => "مشاهدة",
+    'likes' => 'اعجابات',
+
 ];
