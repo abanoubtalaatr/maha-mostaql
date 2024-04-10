@@ -11,6 +11,13 @@
                                     <img src="{{asset("website/assets/images/1-nav.png")}}" alt="">
                                     تسجيل خروج</a>
                             </li>
+
+                            <li class="nav-item-2">
+                                <a href="{{route('user.owner.projects.all')}}" class="nav-link-2 text-white">
+                                    <img src="{{asset("website/assets/images/1-nav.png")}}" alt="">
+                                    لوحة التحكم</a>
+                            </li>
+
                         @else
                             <li class="nav-item-2">
                                 <a href="{{route('user.login')}}" class="nav-link-2 text-white">
@@ -44,9 +51,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="search-filter.html">المشاريع</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">تواصل معنا</a>
-                                </li>
+{{--                                <li class="nav-item">--}}
+{{--                                    <a class="nav-link" href="contact.html">تواصل معنا</a>--}}
+{{--                                </li>--}}
                                 <li class="nav-item">
                                     <a class="nav-link" href="about.html">من نحن</a>
                                 </li>
@@ -94,21 +101,21 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.502" height="14.493" viewBox="0 0 14.502 14.493">
-                                        <g id="circular-outlined-badge-with-ribbon-recognition-prize-symbol" transform="translate(0 0)">
-                                            <g id="_x35__15_" transform="translate(0 0)">
-                                                <g id="Group_3591" data-name="Group 3591" transform="translate(0 0)">
-                                                    <path id="Path_1235" data-name="Path 1235" d="M7.251,2.437a3.17,3.17,0,1,0,3.17,3.17A3.17,3.17,0,0,0,7.251,2.437Zm0,5.435A2.265,2.265,0,1,1,9.515,5.607,2.265,2.265,0,0,1,7.251,7.872Zm4.992.2a5.389,5.389,0,0,0,.574-2.414A5.525,5.525,0,0,0,7.251.172,5.525,5.525,0,0,0,1.685,5.655a5.389,5.389,0,0,0,.574,2.414L0,11.923s1.433.287,2.886.587c.969,1.079,1.934,2.155,1.934,2.155L6.9,11.121c.118.007.234.018.354.018s.236-.01.354-.018l2.077,3.545,1.934-2.155c1.453-.3,2.886-.587,2.886-.587Zm-7.53,4.953s-.7-.659-1.35-1.3c-.928-.264-1.864-.533-1.864-.533L2.812,8.953a5.566,5.566,0,0,0,3.1,2.019ZM7.251,10.14a4.534,4.534,0,1,1,4.525-4.534A4.529,4.529,0,0,1,7.251,10.14Zm3.888,1.586c-.654.635-1.35,1.3-1.35,1.3l-1.2-2.049a5.566,5.566,0,0,0,3.1-2.019L13,11.194Z" transform="translate(0 -0.172)"></path>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </svg>
+{{--                            <li class="nav-item">--}}
+{{--                                <a class="nav-link" href="contact.html">--}}
+{{--                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.502" height="14.493" viewBox="0 0 14.502 14.493">--}}
+{{--                                        <g id="circular-outlined-badge-with-ribbon-recognition-prize-symbol" transform="translate(0 0)">--}}
+{{--                                            <g id="_x35__15_" transform="translate(0 0)">--}}
+{{--                                                <g id="Group_3591" data-name="Group 3591" transform="translate(0 0)">--}}
+{{--                                                    <path id="Path_1235" data-name="Path 1235" d="M7.251,2.437a3.17,3.17,0,1,0,3.17,3.17A3.17,3.17,0,0,0,7.251,2.437Zm0,5.435A2.265,2.265,0,1,1,9.515,5.607,2.265,2.265,0,0,1,7.251,7.872Zm4.992.2a5.389,5.389,0,0,0,.574-2.414A5.525,5.525,0,0,0,7.251.172,5.525,5.525,0,0,0,1.685,5.655a5.389,5.389,0,0,0,.574,2.414L0,11.923s1.433.287,2.886.587c.969,1.079,1.934,2.155,1.934,2.155L6.9,11.121c.118.007.234.018.354.018s.236-.01.354-.018l2.077,3.545,1.934-2.155c1.453-.3,2.886-.587,2.886-.587Zm-7.53,4.953s-.7-.659-1.35-1.3c-.928-.264-1.864-.533-1.864-.533L2.812,8.953a5.566,5.566,0,0,0,3.1,2.019ZM7.251,10.14a4.534,4.534,0,1,1,4.525-4.534A4.529,4.529,0,0,1,7.251,10.14Zm3.888,1.586c-.654.635-1.35,1.3-1.35,1.3l-1.2-2.049a5.566,5.566,0,0,0,3.1-2.019L13,11.194Z" transform="translate(0 -0.172)"></path>--}}
+{{--                                                </g>--}}
+{{--                                            </g>--}}
+{{--                                        </g>--}}
+{{--                                    </svg>--}}
 
-                                    تواصل معنا
-                                </a>
-                            </li>
+{{--                                    تواصل معنا--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
                             <li class="nav-item">
                                 <a class="nav-link" href="about.html">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12">
@@ -178,6 +185,7 @@
                                 <a href="{{route('user.login')}}" class="btn btn-3 me-2">
                                     تسجيل الدخول
                                 </a>
+
                             </div>
                             @endif
                         </div>

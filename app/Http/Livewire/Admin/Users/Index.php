@@ -2,9 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Users;
 
-use App\Models\LibraryProfit;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,7 +10,7 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $user_type, $status, $username, $email, $page_title;
+    public $type, $status, $username, $email, $page_title;
     protected $queryString = ['status', 'email', 'email', 'username',];
     public $rowNumber = 1;
     public $currentPage = 1;
@@ -41,8 +39,10 @@ class Index extends Component
                 return $query->where('email', 'LIKE', '%' . $this->email . '%');
             })->when(!empty($this->username), function ($query) {
                 $query->where(function ($query){
-                    return $query->where('username', 'LIKE', '%' . $this->username . '%');
+                    return $query->where('first_name', 'LIKE', '%' . $this->username . '%')->orWhere('last_name', 'LIKE', '%' . $this->username . '%');
                 });
+            })->when($this->type, function ($query){
+                $query->where('account_type', $this->type);
             })->latest()->paginate();
     }
 

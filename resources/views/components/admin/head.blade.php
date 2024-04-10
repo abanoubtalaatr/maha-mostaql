@@ -9,13 +9,13 @@
 
                 <div class="n-wrap">
 
-                    <a href="{{route('admin.notifications')}}">
-                        @if(\App\Models\Notification::query()->where('is_admin', 1)->where('when_read', null)->count() > 0)
+{{--                    <a href="{{route('admin.notifications')}}">--}}
+{{--                        @if(\App\Models\Notification::query()->where('is_admin', 1)->where('when_read', null)->count() > 0)--}}
 
-                    <div class="notifi-dot"></div>
-                        @endif
-                    <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/bell.png" alt="">
-                    </a>
+{{--                    <div class="notifi-dot"></div>--}}
+{{--                        @endif--}}
+{{--                    <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/bell.png" alt="">--}}
+{{--                    </a>--}}
                 </div>
 
             </a>

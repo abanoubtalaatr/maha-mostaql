@@ -43,7 +43,7 @@
                             </div>
                             <a href="{{route('user.client.my_works.show', $work->id)}}" class="double-div-bottom shadow">
                                 <span>{{$work->title}} </span>
-                                <img src="{{asset('website/assets/images/proj-2.png')}}">
+                                <img src="{{asset('uploads/pics/'. $work->image)}}">
                             </a>
                         </div>
                         @endforeach
@@ -52,28 +52,7 @@
                     <!-- end of cards -->
                     <!-- pagination enable it when the page is full -->
                     <div class="col-md-12 my-4 position-relative">
-                        <nav aria-label="Page navigation example ">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item">
-                                    <a class="page-link next-link" href="#"><img src="assets/images/nav-right.png" alt="">
-                                        التالي</a>
-                                </li>
-
-                                <li class="page-item">
-                                    <a class="page-link page-link-2" href="#">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link page-link-2" href="#">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link page-link-2" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link prev-link" href="#">
-                                        السابق <img src="assets/images/nav-left.png" alt=""></a>
-                                </li>
-                            </ul>
-                        </nav>
+                        {{$works->links()}}
                     </div>
                     <!-- pagination  -->
                     <!-- end of text -->

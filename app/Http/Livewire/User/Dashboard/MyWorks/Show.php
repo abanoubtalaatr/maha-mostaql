@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\User\Dashboard\MyWorks;
 
 use App\Models\Work;
+use App\Services\MyWorkService;
 use Livewire\Component;
 
 class Show extends Component
@@ -12,8 +13,14 @@ class Show extends Component
     public function mount(Work $work)
     {
         $this->work = $work;
+
+        (new MyWorkService())->increaseViews($work->id);
     }
 
+    public function likeWork()
+    {
+        (new MyWorkService())->increaseLikes($this->work->id);
+    }
     public function destroy()
     {
         $this->work->delete();

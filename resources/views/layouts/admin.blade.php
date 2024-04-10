@@ -50,28 +50,28 @@
 
             @can('Manage orders')
                 <li>
-                    <a href="{{route('admin.orders')}}">
+                    <a href="{{route('admin.projects')}}">
                         <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
-                        @lang('site.orders')
+                        @lang('site.projects')
                     </a>
                 </li>
             @endcan
-            @can('Manage admins')
-                <li>
-                    <a href="{{route('admin.admins.index')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
-                        @lang('site.admins')
-                    </a>
-                </li>
-            @endcan
-            @can('Manage roles')
-                <li>
-                    <a href="{{route('admin.role')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
-                        @lang('site.roles')
-                    </a>
-                </li>
-            @endcan
+{{--            @can('Manage admins')--}}
+{{--                <li>--}}
+{{--                    <a href="{{route('admin.admins.index')}}">--}}
+{{--                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">--}}
+{{--                        @lang('site.admins')--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--            @endcan--}}
+{{--            @can('Manage roles')--}}
+{{--                <li>--}}
+{{--                    <a href="{{route('admin.role')}}">--}}
+{{--                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">--}}
+{{--                        @lang('site.roles')--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--            @endcan--}}
             @can('Manage users')
                 <li>
                     <a href="{{route('admin.users.index')}}">
@@ -81,94 +81,38 @@
                 </li>
             @endcan
 
-            @can('Manage car brands')
+
                 <li>
-                    <a href="{{route('admin.car_brands')}}">
+                    <a href="{{route('admin.countries.index')}}">
                         <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
-                        @lang('site.car_brands')
+                        @lang('admin.countries')
                     </a>
                 </li>
-            @endcan
 
-            @can('Manage car modules')
-                <li>
-                    <a href="{{route('admin.car_modules')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
-                        @lang('site.car_modules')
-                    </a>
-                </li>
-            @endcan
+            <li>
+                <a href="{{route('admin.specialties.index')}}">
+                    <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
+                    @lang('admin.specialties')
+                </a>
+            </li>
 
-{{--            @can('Manage car cylinders')--}}
+{{--            @can('Manage pages')--}}
 {{--                <li>--}}
-{{--                    <a href="{{route('admin.car_cylinders')}}">--}}
+{{--                    <a href="{{route('admin.pages.index')}}">--}}
 {{--                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">--}}
-{{--                        @lang('site.car_cylinders')--}}
+{{--                        @lang('messages.pages')--}}
 {{--                    </a>--}}
 {{--                </li>--}}
 {{--            @endcan--}}
 
-            @can('Manage oil brands')
-                <li>
-                    <a href="{{route('admin.oil_brands')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
-                        @lang('site.oil_brands')
-                    </a>
-                </li>
-            @endcan
-
-            @can('Manage oils')
-                <li>
-                    <a href="{{route('admin.oils')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
-                        @lang('site.oils')
-                    </a>
-                </li>
-            @endcan
-            @can('Manage services')
-                <li>
-                    <a href="{{route('admin.services')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
-                        @lang('site.services')
-                    </a>
-                </li>
-            @endcan
-
-            @can('Manage sub services')
-                <li>
-                    <a href="{{route('admin.sub_services')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
-                        @lang('site.sub_services')
-                    </a>
-                </li>
-            @endcan
-
-        @can('Manage contact_us')
-                <li>
-                    <a href="{{route('admin.contacts')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/contact.svg" alt="">
-                        @lang('site.contact_us')
-                    </a>
-                </li>
-            @endcan
-
-            @can('Manage pages')
-                <li>
-                    <a href="{{route('admin.pages.index')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
-                        @lang('messages.pages')
-                    </a>
-                </li>
-            @endcan
-
-            @can('Manage sliders')
-                <li>
-                    <a href="{{route('admin.slider')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
-                        @lang('general.slider')
-                    </a>
-                </li>
-            @endcan
+{{--            @can('Manage sliders')--}}
+{{--                <li>--}}
+{{--                    <a href="{{route('admin.slider')}}">--}}
+{{--                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">--}}
+{{--                        @lang('general.slider')--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--            @endcan--}}
 
 
 {{--            @can('Manage partners')--}}
@@ -189,14 +133,14 @@
                     </a>
                 </li>
             @endcan
-            @can('Manage opinions')
-                <li>
-                    <a href="{{route('admin.opinions')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
-                        @lang('site.opinions')
-                    </a>
-                </li>
-            @endcan
+{{--            @can('Manage opinions')--}}
+{{--                <li>--}}
+{{--                    <a href="{{route('admin.opinions')}}">--}}
+{{--                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">--}}
+{{--                        @lang('site.opinions')--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--            @endcan--}}
             <li><a href="{{route('admin.profile')}}"><img
                         src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg"
                         alt="">@lang('site.profile')</a></li>
@@ -212,7 +156,7 @@
     <!-- End Main Content-->
         <!-- Main footer-->
         <footer class="main-footer">
-            <p>All rights reserved {{date('Y')}} - Bogi</p>
+            <p>All rights reserved {{date('Y')}} </p>
         </footer>
         <!-- End Main footer-->
     </div>

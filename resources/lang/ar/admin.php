@@ -23,5 +23,20 @@ return [
     'not_paid' => 'لم يتم الدفع بعد',
     'edit_successfully' => 'تم التعديل بنجاح',
     'create_successfully' => 'تم الاضافة بنجاح',
-    'delete_successfully' => 'تم الحذف بنجاح'
+    'delete_successfully' => 'تم الحذف بنجاح',
+    'title' => 'العنوان',
+    'price' => "السعر",
+    "description" => "الوصف",
+    "period" => "المدة",
+    "accept" => "قبول",
+    "type" => "النوع",
+    "instagram" => "انستجرام",
+    "number_of_days_to_receive_money" => "   المدة التي سوف يتم تحويل المبلغ الي حساب المستقل ( يوم )",
+    "commission" => "العمولة ( نسبة مئوية )",
+    "settings" => "الاعدادات",
+    "countries" => 'البلدان',
+    "edit" => "تعديل",
+    "delete" => "حذف",
+    "specialties" => "التخصصات"
+
 ];

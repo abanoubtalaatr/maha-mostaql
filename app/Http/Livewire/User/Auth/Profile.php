@@ -5,8 +5,6 @@ namespace App\Http\Livewire\User\Auth;
 use App\Http\Livewire\Traits\ValidationTrait;
 use App\Models\Country;
 use App\Models\Specialty;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -19,6 +17,7 @@ class Profile extends Component
     public $photo, $avatar;
     public $countries;
     public $specialties;
+    public $image, $imageUrl;
 
     public function mount()
     {
@@ -33,22 +32,18 @@ class Profile extends Component
     {
         $this->validate();
 
+        if(isset($this->image)){
+            $this->form['avatar'] =
+                $this->image?
+                    $this->image->storeAs(date('Y/m/d'),Str::random(50).'.'.$this->image->extension(),'public') : null;
 
-        if ($this->photo) {
-
-            $path = $this->photo->storeAs('public/images', Str::random(40) . '.' . $this->photo->getClientOriginalExtension());
-            $this->form['avatar'] = Storage::url($path);
         }
 
         $this->user->update($this->form);
         $this->message = "تم التعديل بنجاح";
-    }
 
-    public function updatedPhoto()
-    {
-        dd('fdslkfjds');
+        return redirect()->to(route('user.profile'));
 
-        // Implement photo upload logic if needed
     }
 
     public function getRules()

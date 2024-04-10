@@ -9,34 +9,35 @@
         <div class="row">
             <div class="col-4 text-center">
                 <div class="dash box-shad" onclick='window.location.href="{{route('admin.users.index')}}'>
-                    <h4>{{$client_count}}</h4>
-                    <p class="grey">@lang('site.users')</p>
+                    <h4>{{$totalClients??0}}</h4>
+                    <p class="grey">@lang('site.clients')</p>
+                </div>
+            </div>
+
+            <div class="col-4 text-center">
+                <div class="dash box-shad" onclick='window.location.href="{{route('admin.users.index')}}'>
+                    <h4>{{$totalFreelancers??0}}</h4>
+                    <p class="grey">@lang('site.freelancers')</p>
                 </div>
             </div>
 
             <div class="col-4 text-center">
                 <div class="dash box-shad" onclick='window.location.href="{{route('admin.oil_brands')}}'>
-                    <h4>{{$oil_brand}}</h4>
-                    <p class="grey">@lang('site.oil_brands')</p>
+                    <h4>{{$totalProjects??0}}</h4>
+                    <p class="grey">@lang('site.projects')</p>
                 </div>
             </div>
 
             <div class="col-4 text-center">
-                <div class="dash box-shad" onclick='window.location.href="{{route('admin.services')}}'>
-                    <h4>{{$services_count}}</h4>
-                    <p class="grey">@lang('site.services')</p>
-                </div>
-            </div>
-            <div class="col-4 text-center">
                 <div class="dash box-shad" onclick='window.location.href="{{route('admin.orders')}}'>
-                    <h4>{{$orders_count}}</h4>
-                    <p class="grey">@lang('site.orders')</p>
+                    <h4>{{$totalSpecialties??0}}</h4>
+                    <p class="grey">@lang('site.specialties')</p>
                 </div>
             </div>
             <div class="col-4 text-center">
                 <div class="dash box-shad" >
-                    <h4>{{$total_money}}</h4>
-                    <p class="grey">@lang('site.return_orders')</p>
+                    <h4>{{$totalCountries??0}}</h4>
+                    <p class="grey">@lang('site.countries')</p>
                 </div>
             </div>
 

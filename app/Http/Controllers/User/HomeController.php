@@ -16,12 +16,12 @@ class HomeController extends Controller{
     {
         $sliders = Slider::query()->active()->get();
 
-        $about = Page::query()->find(10);
-        $service = Page::query()->find(11);
+//        $about = Page::query()->find(10);
+//        $service = Page::query()->find(11);
 
-        $testmoinals = Opinion::query()->active()->get();
+//        $testmoinals = Opinion::query()->active()->get();
 
         $countries = Country::query()->get();
-        return view('welcome', compact('sliders', 'about', 'service','testmoinals','countries'));
+        return view('welcome', compact('sliders','countries'));
     }
 }

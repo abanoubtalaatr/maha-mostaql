@@ -11,7 +11,7 @@
     <!-- start sidebar -->
     <nav id="sidebar">
         <div class="pt-5">
-            <a href="#" class="img logo rounded-circle"><img src="{{asset('website/assets/images/logo.png')}}" alt=""></a>
+            <a href="{{route('home')}}" class="img logo rounded-circle"><img src="{{asset('website/assets/images/logo.png')}}" alt=""></a>
 {{--            <div class="d-flex mb-5 side-company-card mt-3">--}}
 {{--                <img src="{{asset('website/assets/images/company-logo.png')}}" alt="" class="ms-3 company-logo">--}}
 {{--                <div class="company-info-2 pt-2">--}}
@@ -20,8 +20,8 @@
 {{--                </div>--}}
 {{--            </div>--}}
             <ul class="list-unstyled components mb-5 sidebar-container">
-                <li>
-                    <a href="dashboard-explore-projects.html">
+                <li class="{{ \App\Helpers\activeUrl('user.owner.projects.all') }}">
+                    <a href="{{route('user.owner.projects.all')}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14.979" viewBox="0 0 16 14.979">
                             <g id="cube-of-notes-stack" transform="translate(0 -19.534)">
                                 <g id="_x32__21_" transform="translate(0 19.534)">
@@ -35,90 +35,114 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="dashboard-jobs.html">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18.286" viewBox="0 0 16 18.286">
-                            <g id="copy-two-paper-sheets-interface-symbol" transform="translate(-43.714)">
-                                <g id="_x33__21_" transform="translate(43.714)">
-                                    <g id="Group_3603" data-name="Group 3603" transform="translate(0)">
-                                        <path id="Path_1247" data-name="Path 1247" d="M55.714,0H48.857a2.381,2.381,0,0,0-2.286,2.286l-.661.015a2.288,2.288,0,0,0-2.2,2.27V16A2.381,2.381,0,0,0,46,18.286h8.571A2.381,2.381,0,0,0,56.857,16h.571a2.381,2.381,0,0,0,2.286-2.286V4.585ZM54.571,17.143H46A1.2,1.2,0,0,1,44.857,16V4.571a1.133,1.133,0,0,1,1.089-1.124l.626-.019V13.714A2.381,2.381,0,0,0,48.857,16h6.857A1.2,1.2,0,0,1,54.571,17.143Zm4-3.429a1.2,1.2,0,0,1-1.143,1.143H48.857a1.2,1.2,0,0,1-1.143-1.143V2.286a1.2,1.2,0,0,1,1.143-1.143h5.714c-.009,1.316,0,2.3,0,2.3a2.355,2.355,0,0,0,2.286,2.271h1.714ZM56.857,4.571c-.609,0-1.143-1.106-1.143-1.7V1.161h0l2.857,3.412Z" transform="translate(-43.714)"></path>
-                                        <line id="Line_31" data-name="Line 31" y2="4.618" transform="translate(9.5 6.382)" fill="none" stroke-linecap="round" stroke-width="1"></line>
-                                        <line id="Line_32" data-name="Line 32" x1="5.7" transform="translate(6.5 8.691)" fill="none" stroke-linecap="round" stroke-width="1"></line>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
 
-                        عروضي
-                    </a>
-                </li>
-                <li>
-                    <a href="dashboard-my-projects.html">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18.286" viewBox="0 0 16 18.286">
-                            <g id="copy-two-paper-sheets-interface-symbol" transform="translate(-43.714)">
-                                <g id="_x33__21_" transform="translate(43.714)">
-                                    <g id="Group_3603" data-name="Group 3603" transform="translate(0)">
-                                        <path id="Path_1247" data-name="Path 1247" d="M55.714,0H48.857a2.381,2.381,0,0,0-2.286,2.286l-.661.015a2.288,2.288,0,0,0-2.2,2.27V16A2.381,2.381,0,0,0,46,18.286h8.571A2.381,2.381,0,0,0,56.857,16h.571a2.381,2.381,0,0,0,2.286-2.286V4.585ZM54.571,17.143H46A1.2,1.2,0,0,1,44.857,16V4.571a1.133,1.133,0,0,1,1.089-1.124l.626-.019V13.714A2.381,2.381,0,0,0,48.857,16h6.857A1.2,1.2,0,0,1,54.571,17.143Zm4-3.429a1.2,1.2,0,0,1-1.143,1.143H48.857a1.2,1.2,0,0,1-1.143-1.143V2.286a1.2,1.2,0,0,1,1.143-1.143h5.714c-.009,1.316,0,2.3,0,2.3a2.355,2.355,0,0,0,2.286,2.271h1.714ZM56.857,4.571c-.609,0-1.143-1.106-1.143-1.7V1.161h0l2.857,3.412Z" transform="translate(-43.714)"></path>
-                                        <line id="Line_31" data-name="Line 31" y2="4.618" transform="translate(9.5 6.382)" fill="none" stroke-linecap="round" stroke-width="1"></line>
-                                        <line id="Line_32" data-name="Line 32" x1="5.7" transform="translate(6.5 8.691)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                @if(\App\Helpers\isFreelancer())
+                    <li class="{{ \App\Helpers\activeUrl('user.client.proposals.my_proposals') }}">
+                        <a href="{{route('user.client.proposals.my_proposals')}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18.286" viewBox="0 0 16 18.286">
+                                <g id="copy-two-paper-sheets-interface-symbol" transform="translate(-43.714)">
+                                    <g id="_x33__21_" transform="translate(43.714)">
+                                        <g id="Group_3603" data-name="Group 3603" transform="translate(0)">
+                                            <path id="Path_1247" data-name="Path 1247" d="M55.714,0H48.857a2.381,2.381,0,0,0-2.286,2.286l-.661.015a2.288,2.288,0,0,0-2.2,2.27V16A2.381,2.381,0,0,0,46,18.286h8.571A2.381,2.381,0,0,0,56.857,16h.571a2.381,2.381,0,0,0,2.286-2.286V4.585ZM54.571,17.143H46A1.2,1.2,0,0,1,44.857,16V4.571a1.133,1.133,0,0,1,1.089-1.124l.626-.019V13.714A2.381,2.381,0,0,0,48.857,16h6.857A1.2,1.2,0,0,1,54.571,17.143Zm4-3.429a1.2,1.2,0,0,1-1.143,1.143H48.857a1.2,1.2,0,0,1-1.143-1.143V2.286a1.2,1.2,0,0,1,1.143-1.143h5.714c-.009,1.316,0,2.3,0,2.3a2.355,2.355,0,0,0,2.286,2.271h1.714ZM56.857,4.571c-.609,0-1.143-1.106-1.143-1.7V1.161h0l2.857,3.412Z" transform="translate(-43.714)"></path>
+                                            <line id="Line_31" data-name="Line 31" y2="4.618" transform="translate(9.5 6.382)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                                            <line id="Line_32" data-name="Line 32" x1="5.7" transform="translate(6.5 8.691)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                                        </g>
                                     </g>
                                 </g>
-                            </g>
-                        </svg>
-                        مشاريعي
-                    </a>
-                </li>
-                <li>
-                    <a href="dashboard-add-project.html">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18.286" viewBox="0 0 16 18.286">
-                            <g id="copy-two-paper-sheets-interface-symbol" transform="translate(-43.714)">
-                                <g id="_x33__21_" transform="translate(43.714)">
-                                    <g id="Group_3603" data-name="Group 3603" transform="translate(0)">
-                                        <path id="Path_1247" data-name="Path 1247" d="M55.714,0H48.857a2.381,2.381,0,0,0-2.286,2.286l-.661.015a2.288,2.288,0,0,0-2.2,2.27V16A2.381,2.381,0,0,0,46,18.286h8.571A2.381,2.381,0,0,0,56.857,16h.571a2.381,2.381,0,0,0,2.286-2.286V4.585ZM54.571,17.143H46A1.2,1.2,0,0,1,44.857,16V4.571a1.133,1.133,0,0,1,1.089-1.124l.626-.019V13.714A2.381,2.381,0,0,0,48.857,16h6.857A1.2,1.2,0,0,1,54.571,17.143Zm4-3.429a1.2,1.2,0,0,1-1.143,1.143H48.857a1.2,1.2,0,0,1-1.143-1.143V2.286a1.2,1.2,0,0,1,1.143-1.143h5.714c-.009,1.316,0,2.3,0,2.3a2.355,2.355,0,0,0,2.286,2.271h1.714ZM56.857,4.571c-.609,0-1.143-1.106-1.143-1.7V1.161h0l2.857,3.412Z" transform="translate(-43.714)"></path>
-                                        <line id="Line_31" data-name="Line 31" y2="4.618" transform="translate(9.5 6.382)" fill="none" stroke-linecap="round" stroke-width="1"></line>
-                                        <line id="Line_32" data-name="Line 32" x1="5.7" transform="translate(6.5 8.691)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                            </svg>
+
+                            عروضي
+                        </a>
+                    </li>
+                    <li class="{{ \App\Helpers\activeUrl('user.client.my_works.index') }}">
+                        <a href="{{route('user.client.my_works.index')}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18.286" viewBox="0 0 16 18.286">
+                                <g id="copy-two-paper-sheets-interface-symbol" transform="translate(-43.714)">
+                                    <g id="_x33__21_" transform="translate(43.714)">
+                                        <g id="Group_3603" data-name="Group 3603" transform="translate(0)">
+                                            <path id="Path_1247" data-name="Path 1247" d="M55.714,0H48.857a2.381,2.381,0,0,0-2.286,2.286l-.661.015a2.288,2.288,0,0,0-2.2,2.27V16A2.381,2.381,0,0,0,46,18.286h8.571A2.381,2.381,0,0,0,56.857,16h.571a2.381,2.381,0,0,0,2.286-2.286V4.585ZM54.571,17.143H46A1.2,1.2,0,0,1,44.857,16V4.571a1.133,1.133,0,0,1,1.089-1.124l.626-.019V13.714A2.381,2.381,0,0,0,48.857,16h6.857A1.2,1.2,0,0,1,54.571,17.143Zm4-3.429a1.2,1.2,0,0,1-1.143,1.143H48.857a1.2,1.2,0,0,1-1.143-1.143V2.286a1.2,1.2,0,0,1,1.143-1.143h5.714c-.009,1.316,0,2.3,0,2.3a2.355,2.355,0,0,0,2.286,2.271h1.714ZM56.857,4.571c-.609,0-1.143-1.106-1.143-1.7V1.161h0l2.857,3.412Z" transform="translate(-43.714)"></path>
+                                            <line id="Line_31" data-name="Line 31" y2="4.618" transform="translate(9.5 6.382)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                                            <line id="Line_32" data-name="Line 32" x1="5.7" transform="translate(6.5 8.691)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                                        </g>
                                     </g>
                                 </g>
-                            </g>
-                        </svg>
-                        اضافة مشروع
-                    </a>
-                </li>
+                            </svg>
+                            اعمالي
+                        </a>
+                    </li>
+                    <li class="{{ \App\Helpers\activeUrl('user.client.my_works.index') }}">
+                        <a href="{{route('user.client.my_works.index')}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="10.937" viewBox="0 0 16 10.937">
+                                <g id="tag-outline" transform="translate(0 136.237) rotate(-90)">
+                                    <g id="_x35__18_" transform="translate(125.3)">
+                                        <g id="Group_3744" data-name="Group 3744" transform="translate(0)">
+                                            <path id="Path_1388" data-name="Path 1388" d="M135.935,4.956,131.392.277a.9.9,0,0,0-1.3,0L125.55,4.956a.9.9,0,0,0-.243.808H125.3v8.189A2.018,2.018,0,0,0,127.288,16h6.958a2.018,2.018,0,0,0,1.988-2.047V6.276C136.234,5.682,136.294,5.325,135.935,4.956ZM135.3,14a.993.993,0,0,1-1,1h-7a1.04,1.04,0,0,1-1.005-1.048L126.3,6a.906.906,0,0,1,.224-.713l3.895-4.011a.45.45,0,0,1,.649,0l3.895,4.01A.913.913,0,0,1,135.3,6v8Zm-4.529-9.772a2.048,2.048,0,1,0,1.988,2.047A2.018,2.018,0,0,0,130.767,4.229Zm0,3.071a1.024,1.024,0,1,1,.994-1.024A1.009,1.009,0,0,1,130.767,7.3Z" transform="translate(-125.3 0)"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+
+                            شراء عروض جديدة
+                        </a>
+                    </li>
+
+                @endif
+
+                @if(\App\Helpers\isClient())
+                    <li class="{{ \App\Helpers\activeUrl('user.owner.projects.requests_deliver') }}">
+                        <a href="{{route('user.owner.projects.requests_deliver')}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18.286" viewBox="0 0 16 18.286">
+                                <g id="copy-two-paper-sheets-interface-symbol" transform="translate(-43.714)">
+                                    <g id="_x33__21_" transform="translate(43.714)">
+                                        <g id="Group_3603" data-name="Group 3603" transform="translate(0)">
+                                            <path id="Path_1247" data-name="Path 1247" d="M55.714,0H48.857a2.381,2.381,0,0,0-2.286,2.286l-.661.015a2.288,2.288,0,0,0-2.2,2.27V16A2.381,2.381,0,0,0,46,18.286h8.571A2.381,2.381,0,0,0,56.857,16h.571a2.381,2.381,0,0,0,2.286-2.286V4.585ZM54.571,17.143H46A1.2,1.2,0,0,1,44.857,16V4.571a1.133,1.133,0,0,1,1.089-1.124l.626-.019V13.714A2.381,2.381,0,0,0,48.857,16h6.857A1.2,1.2,0,0,1,54.571,17.143Zm4-3.429a1.2,1.2,0,0,1-1.143,1.143H48.857a1.2,1.2,0,0,1-1.143-1.143V2.286a1.2,1.2,0,0,1,1.143-1.143h5.714c-.009,1.316,0,2.3,0,2.3a2.355,2.355,0,0,0,2.286,2.271h1.714ZM56.857,4.571c-.609,0-1.143-1.106-1.143-1.7V1.161h0l2.857,3.412Z" transform="translate(-43.714)"></path>
+                                            <line id="Line_31" data-name="Line 31" y2="4.618" transform="translate(9.5 6.382)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                                            <line id="Line_32" data-name="Line 32" x1="5.7" transform="translate(6.5 8.691)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+
+                            طلبات التسليم
+                        </a>
+                    </li>
+                    <li class="{{ \App\Helpers\activeUrl('user.owner.projects.index') }}">
+                        <a href="{{route('user.owner.projects.index')}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18.286" viewBox="0 0 16 18.286">
+                                <g id="copy-two-paper-sheets-interface-symbol" transform="translate(-43.714)">
+                                    <g id="_x33__21_" transform="translate(43.714)">
+                                        <g id="Group_3603" data-name="Group 3603" transform="translate(0)">
+                                            <path id="Path_1247" data-name="Path 1247" d="M55.714,0H48.857a2.381,2.381,0,0,0-2.286,2.286l-.661.015a2.288,2.288,0,0,0-2.2,2.27V16A2.381,2.381,0,0,0,46,18.286h8.571A2.381,2.381,0,0,0,56.857,16h.571a2.381,2.381,0,0,0,2.286-2.286V4.585ZM54.571,17.143H46A1.2,1.2,0,0,1,44.857,16V4.571a1.133,1.133,0,0,1,1.089-1.124l.626-.019V13.714A2.381,2.381,0,0,0,48.857,16h6.857A1.2,1.2,0,0,1,54.571,17.143Zm4-3.429a1.2,1.2,0,0,1-1.143,1.143H48.857a1.2,1.2,0,0,1-1.143-1.143V2.286a1.2,1.2,0,0,1,1.143-1.143h5.714c-.009,1.316,0,2.3,0,2.3a2.355,2.355,0,0,0,2.286,2.271h1.714ZM56.857,4.571c-.609,0-1.143-1.106-1.143-1.7V1.161h0l2.857,3.412Z" transform="translate(-43.714)"></path>
+                                            <line id="Line_31" data-name="Line 31" y2="4.618" transform="translate(9.5 6.382)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                                            <line id="Line_32" data-name="Line 32" x1="5.7" transform="translate(6.5 8.691)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                            مشاريعي
+                        </a>
+                    </li>
+                    <li class="{{ \App\Helpers\activeUrl('user.owner.projects.create') }}">
+                        <a href="{{route('user.owner.projects.create')}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18.286" viewBox="0 0 16 18.286">
+                                <g id="copy-two-paper-sheets-interface-symbol" transform="translate(-43.714)">
+                                    <g id="_x33__21_" transform="translate(43.714)">
+                                        <g id="Group_3603" data-name="Group 3603" transform="translate(0)">
+                                            <path id="Path_1247" data-name="Path 1247" d="M55.714,0H48.857a2.381,2.381,0,0,0-2.286,2.286l-.661.015a2.288,2.288,0,0,0-2.2,2.27V16A2.381,2.381,0,0,0,46,18.286h8.571A2.381,2.381,0,0,0,56.857,16h.571a2.381,2.381,0,0,0,2.286-2.286V4.585ZM54.571,17.143H46A1.2,1.2,0,0,1,44.857,16V4.571a1.133,1.133,0,0,1,1.089-1.124l.626-.019V13.714A2.381,2.381,0,0,0,48.857,16h6.857A1.2,1.2,0,0,1,54.571,17.143Zm4-3.429a1.2,1.2,0,0,1-1.143,1.143H48.857a1.2,1.2,0,0,1-1.143-1.143V2.286a1.2,1.2,0,0,1,1.143-1.143h5.714c-.009,1.316,0,2.3,0,2.3a2.355,2.355,0,0,0,2.286,2.271h1.714ZM56.857,4.571c-.609,0-1.143-1.106-1.143-1.7V1.161h0l2.857,3.412Z" transform="translate(-43.714)"></path>
+                                            <line id="Line_31" data-name="Line 31" y2="4.618" transform="translate(9.5 6.382)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                                            <line id="Line_32" data-name="Line 32" x1="5.7" transform="translate(6.5 8.691)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                            اضافة مشروع
+                        </a>
+                    </li>
+                @endif
 
 
-                <li class="{{ \App\Helpers\activeUrl('user.client.my_works.index') }}">
-                    <a href="{{route('user.client.my_works.index')}}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18.286" viewBox="0 0 16 18.286">
-                            <g id="copy-two-paper-sheets-interface-symbol" transform="translate(-43.714)">
-                                <g id="_x33__21_" transform="translate(43.714)">
-                                    <g id="Group_3603" data-name="Group 3603" transform="translate(0)">
-                                        <path id="Path_1247" data-name="Path 1247" d="M55.714,0H48.857a2.381,2.381,0,0,0-2.286,2.286l-.661.015a2.288,2.288,0,0,0-2.2,2.27V16A2.381,2.381,0,0,0,46,18.286h8.571A2.381,2.381,0,0,0,56.857,16h.571a2.381,2.381,0,0,0,2.286-2.286V4.585ZM54.571,17.143H46A1.2,1.2,0,0,1,44.857,16V4.571a1.133,1.133,0,0,1,1.089-1.124l.626-.019V13.714A2.381,2.381,0,0,0,48.857,16h6.857A1.2,1.2,0,0,1,54.571,17.143Zm4-3.429a1.2,1.2,0,0,1-1.143,1.143H48.857a1.2,1.2,0,0,1-1.143-1.143V2.286a1.2,1.2,0,0,1,1.143-1.143h5.714c-.009,1.316,0,2.3,0,2.3a2.355,2.355,0,0,0,2.286,2.271h1.714ZM56.857,4.571c-.609,0-1.143-1.106-1.143-1.7V1.161h0l2.857,3.412Z" transform="translate(-43.714)"></path>
-                                        <line id="Line_31" data-name="Line 31" y2="4.618" transform="translate(9.5 6.382)" fill="none" stroke-linecap="round" stroke-width="1"></line>
-                                        <line id="Line_32" data-name="Line 32" x1="5.7" transform="translate(6.5 8.691)" fill="none" stroke-linecap="round" stroke-width="1"></line>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                        اعمالي
-                    </a>
-                </li>
-                <li class="{{ \App\Helpers\activeUrl('user.client.my_works.inde') }}">
-                    <a href="{{route('user.client.my_works.index')}}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="10.937" viewBox="0 0 16 10.937">
-                            <g id="tag-outline" transform="translate(0 136.237) rotate(-90)">
-                                <g id="_x35__18_" transform="translate(125.3)">
-                                    <g id="Group_3744" data-name="Group 3744" transform="translate(0)">
-                                        <path id="Path_1388" data-name="Path 1388" d="M135.935,4.956,131.392.277a.9.9,0,0,0-1.3,0L125.55,4.956a.9.9,0,0,0-.243.808H125.3v8.189A2.018,2.018,0,0,0,127.288,16h6.958a2.018,2.018,0,0,0,1.988-2.047V6.276C136.234,5.682,136.294,5.325,135.935,4.956ZM135.3,14a.993.993,0,0,1-1,1h-7a1.04,1.04,0,0,1-1.005-1.048L126.3,6a.906.906,0,0,1,.224-.713l3.895-4.011a.45.45,0,0,1,.649,0l3.895,4.01A.913.913,0,0,1,135.3,6v8Zm-4.529-9.772a2.048,2.048,0,1,0,1.988,2.047A2.018,2.018,0,0,0,130.767,4.229Zm0,3.071a1.024,1.024,0,1,1,.994-1.024A1.009,1.009,0,0,1,130.767,7.3Z" transform="translate(-125.3 0)"></path>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-
-                        شراء عروض جديدة
-                    </a>
-                </li>
-                <li>
-                    <a href="dahboard-fav.html">
+                <li class="{{ \App\Helpers\activeUrl('user.favourites.projects') }}">
+                    <a href="{{route('user.favourites.projects')}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
                             <g id="gear-outlined-symbol" transform="translate(-0.005)">
                                 <g id="_x31__13_" transform="translate(0.005)">
@@ -132,6 +156,7 @@
                         مفضلاتي
                     </a>
                 </li>
+
                 <li>
                     <a href="dashboard-balance.html">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
@@ -162,6 +187,7 @@
                         المعاملات المالية
                     </a>
                 </li>
+
                 <li class="{{ \App\Helpers\activeUrl('user.profile') }}">
                     <a href="{{ route('user.profile') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12">
@@ -192,6 +218,7 @@
                         تغير كلمة المرور
                     </a>
                 </li>
+
                 <li>
                     <a href="{{route('user.logout')}}" class="border-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14">

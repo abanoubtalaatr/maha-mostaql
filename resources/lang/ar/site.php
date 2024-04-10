@@ -615,5 +615,9 @@ return [
     "date_of_complete_project" => "تاريخ اكتمال المشروع",
     "views" => "مشاهدة",
     'likes' => 'اعجابات',
-
+    'countries' => 'البلدان',
+    'specialties' => 'التخصصات',
+    'projects' => 'المشاريع',
+    'clients' => 'العملاء',
+    'freelancers' => 'المستقلين'
 ];

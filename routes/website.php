@@ -35,6 +35,7 @@ Route::group([
             Route::get('change-password', \App\Http\Livewire\User\Dashboard\ChangePassword::class)->name('change_password');
 
 
+            //freelancer
             Route::group(['prefix' => 'client', 'as' => 'client.'], function (){
                Route::group(['prefix' => 'my-works', 'as' => 'my_works.'], function (){
                    Route::get('/', \App\Http\Livewire\User\Dashboard\MyWorks\Index::class)->name('index');
@@ -42,6 +43,38 @@ Route::group([
                    Route::get('/{work}', \App\Http\Livewire\User\Dashboard\MyWorks\Show::class)->name('show');
                    Route::get('/{work}/edit', \App\Http\Livewire\User\Dashboard\MyWorks\Edit::class)->name('edit');
                });
+
+                Route::group(['prefix' => 'proposals', 'as' => 'proposals.'], function (){
+                    Route::get('/my-proposals', \App\Http\Livewire\User\Dashboard\Proposal\MyProposal::class)->name('my_proposals');
+                    Route::get('{project}/create', \App\Http\Livewire\User\Dashboard\Proposal\Create::class)->name('create');
+
+                });
+            });
+
+            //owner projects
+            Route::group(['prefix' => 'owner', 'as' => 'owner.'], function (){
+                Route::group(['prefix' => 'projects', 'as' => 'projects.'], function (){
+                    Route::get('/all', \App\Http\Livewire\User\Dashboard\Project\All::class)->name('all');
+                    Route::get('/', \App\Http\Livewire\User\Dashboard\Project\Index::class)->name('index');
+                    Route::get('/create', \App\Http\Livewire\User\Dashboard\Project\Create::class)->name('create');
+                    Route::get('/{project}/edit', \App\Http\Livewire\User\Dashboard\Project\Edit::class)->name('edit');
+                    Route::get('/requests-deliver', \App\Http\Livewire\User\Dashboard\Project\RequestsDeliver::class)->name('requests_deliver');
+                });
+
+            });
+
+            Route::group(['prefix' => 'shared', 'as'  => 'shared.'], function (){
+                Route::group(['prefix' => 'projects', 'as' => 'projects.'], function (){
+                    Route::get('/{project}', \App\Http\Livewire\User\Dashboard\Project\Show::class)->name('show');
+                });
+
+                Route::get('users/{user}', \App\Http\Livewire\User\Dashboard\User\Detail::class)->name('user.details');
+            });
+
+            Route::group(['prefix' => 'favourites', 'as' => 'favourites.'], function (){
+                Route::get('/', \App\Http\Livewire\User\Dashboard\Favourite\Project::class)->name('projects');
+                Route::get('/users', \App\Http\Livewire\User\Dashboard\Favourite\User::class)->name('users');
+
             });
 
         });/*authenticated users*/

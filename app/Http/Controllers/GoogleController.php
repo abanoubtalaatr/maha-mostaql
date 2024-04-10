@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\UserTypes;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -26,6 +27,7 @@ class GoogleController extends Controller
                 $user = User::create([
                     'first_name' => $googleUser->name,
                     'email' => $googleUser->email,
+                    'type' => UserTypes::FREELANCER,
                     // Add other necessary fields as per your User model
                 ]);
             }

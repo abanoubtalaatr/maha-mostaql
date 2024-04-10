@@ -4,19 +4,31 @@ namespace App\Http\Livewire\User\Dashboard\MyWorks;
 
 use App\Http\Livewire\Traits\ValidationTrait;
 use App\Models\Work;
+use Illuminate\Support\Str;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
     use ValidationTrait;
 
-    public $form;
+    use WithFileUploads;
+
+    public $form, $image, $imageUrl;
 
     public function store()
     {
         $this->validate();
 
         $this->form['user_id'] = auth()->id();
+
+        $this->validate([
+            'image' => 'image|max:1024', // Max file size of 1MB
+        ]);
+
+        $this->form['image'] =
+            $this->image?
+                $this->image->storeAs(date('Y/m/d'),Str::random(50).'.'.$this->image->extension(),'public') : null;
 
         Work::query()->create($this->form);
 
@@ -33,6 +45,13 @@ class Create extends Component
             'form.image' => ['nullable'],
         ];
     }
+
+    public function updatedImage()
+    {
+        // Update the image preview URL
+        $this->imageUrl = $this->image->temporaryUrl();
+    }
+
 
     public function render()
     {

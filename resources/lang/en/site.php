@@ -1,6 +1,6 @@
 <?php
 return [
-    'site_title' => 'Bogi',
+    'site_title' => 'مستقل',
     'title_ar' => 'Name in Arabic',
     'title_en' => 'Name in English',
     'status' => 'Status',

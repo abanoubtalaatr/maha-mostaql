@@ -5,7 +5,7 @@
     <div class="border-div">
         <div class="b-btm flex-div-2">
             <h4>{{$page_title}}</h4>
-             <a style='text-align:center' href='{{route('admin.create_user')}}' class="button btn-red big">@lang('site.create')</a>
+{{--             <a style='text-align:center' href='{{route('admin.create_user')}}' class="button btn-red big">@lang('site.create')</a>--}}
         </div>
         <div class="table-page-wrap">
 
@@ -30,6 +30,17 @@
                 </div>
 
                 <div class="form-group col-3">
+                    <label for="status-select">@lang('admin.type')</label>
+                    <select wire:model='type' id='status-select' class="form-control  contact-input">
+                        <option value>@lang('admin.type')</option>
+
+                        @foreach(\App\Constants\UserTypes::all() as $type)
+                            <option value="{{$type}}">{{\App\Constants\UserTypes::getName($type)}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group col-3 mt-4">
                     <button wire:click="resetData()" class="btn btn-primary form-control contact-input">@lang('site.reset')</button>
                 </div>
             </div>
@@ -52,7 +63,7 @@
                         <tr>
 
                             <td class="text-center">{{ $rowNumber++ }}</td>
-                            <td class='text-center'>{{$record->username}}</td>
+                            <td class='text-center'>{{$record->first_name . ' ' . $record->last_name}}</td>
                             <td class='text-center'>{{$record->email}}</td>
                             <td class='text-center'>{{$record->mobile}}</td>
                             <td class='text-center'>{{$record->created_at}}</td>
@@ -69,8 +80,7 @@
                                         class="no-btn">
                                         <i class="fas @if($record->status=='active') fa-lock red @else fa-unlock green @endif"></i>
                                     </button>
-                                    <a href='{{route('admin.users.edit',$record->id)}}' class="no-btn"><i
-                                            class="far fa-edit blue"></i></a>
+
                                 </div>
                             </td>
                             @endforeach

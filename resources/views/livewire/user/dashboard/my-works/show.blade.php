@@ -24,14 +24,16 @@
                     <!--  -->
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h3>{{$work->title}}</h3>
-                        <div class="d-flex align-items-center gap-2">
-                            <a href="{{route('user.client.my_works.edit', $work->id)}}" class="btn btn-balance-nav-sec px-4">
-                                تعديل
-                            </a>
-                            <button  id="dash-open-modal" class="btn btn-delete-red px-4">
-                                حذف
-                            </button>
-                        </div>
+                        @if((new \App\Services\MyWorkService())->isCreatedByThisUser($work->id, auth()->id()))
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="{{route('user.client.my_works.edit', $work->id)}}" class="btn btn-balance-nav-sec px-4">
+                                    تعديل
+                                </a>
+                                <button  id="dash-open-modal" class="btn btn-delete-red px-4">
+                                    حذف
+                                </button>
+                            </div>
+                        @endif
                     </div>
                     <!--  -->
                     <div>
@@ -66,6 +68,12 @@
                                     رابط العمل
                                 </a>
                             @endif
+                            <div>
+                                <hr>
+                            <button wire:click="likeWork({{$work->id}})" class="btn btn-primary" href="{{$work->link}}" >
+                                اضغط اعجاب
+                            </button>
+                            </div>
                         </div>
                     </div>
                     <!--  -->
