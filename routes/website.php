@@ -31,6 +31,7 @@ Route::group([
 
         Route::group(['middleware' => 'auth'], function () {
             Route::get('notifications', \App\Http\Livewire\User\Notification::class)->name('notifications');
+            Route::get('chats', \App\Http\Livewire\User\Chat::class)->name('chats');
             Route::get('logout', \App\Http\Livewire\User\Auth\Logout::class)->name('logout');
             Route::get('profile', \App\Http\Livewire\User\Auth\Profile::class)->name('profile');
             Route::get('change-password', \App\Http\Livewire\User\Dashboard\ChangePassword::class)->name('change_password');

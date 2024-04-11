@@ -218,7 +218,23 @@
                         تغير كلمة المرور
                     </a>
                 </li>
+                <li class="{{ \App\Helpers\activeUrl('user.chats') }}">
+                    <a href="{{route('user.chats')}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18.286" viewBox="0 0 16 18.286">
+                            <g id="copy-two-paper-sheets-interface-symbol" transform="translate(-43.714)">
+                                <g id="_x33__21_" transform="translate(43.714)">
+                                    <g id="Group_3603" data-name="Group 3603" transform="translate(0)">
+                                        <path id="Path_1247" data-name="Path 1247" d="M55.714,0H48.857a2.381,2.381,0,0,0-2.286,2.286l-.661.015a2.288,2.288,0,0,0-2.2,2.27V16A2.381,2.381,0,0,0,46,18.286h8.571A2.381,2.381,0,0,0,56.857,16h.571a2.381,2.381,0,0,0,2.286-2.286V4.585ZM54.571,17.143H46A1.2,1.2,0,0,1,44.857,16V4.571a1.133,1.133,0,0,1,1.089-1.124l.626-.019V13.714A2.381,2.381,0,0,0,48.857,16h6.857A1.2,1.2,0,0,1,54.571,17.143Zm4-3.429a1.2,1.2,0,0,1-1.143,1.143H48.857a1.2,1.2,0,0,1-1.143-1.143V2.286a1.2,1.2,0,0,1,1.143-1.143h5.714c-.009,1.316,0,2.3,0,2.3a2.355,2.355,0,0,0,2.286,2.271h1.714ZM56.857,4.571c-.609,0-1.143-1.106-1.143-1.7V1.161h0l2.857,3.412Z" transform="translate(-43.714)"></path>
+                                        <line id="Line_31" data-name="Line 31" y2="4.618" transform="translate(9.5 6.382)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                                        <line id="Line_32" data-name="Line 32" x1="5.7" transform="translate(6.5 8.691)" fill="none" stroke-linecap="round" stroke-width="1"></line>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
 
+                    المحادثات
+                    </a>
+                </li>
                 <li>
                     <a href="{{route('user.logout')}}" class="border-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14">

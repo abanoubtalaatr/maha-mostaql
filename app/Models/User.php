@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -90,5 +91,10 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     public function specialty()
     {
         return $this->belongsTo(Specialty::class);
+    }
+
+    public function isOnline()
+    {
+        return $this->last_active_at && Carbon::parse($this->last_active_at)->diffInMinutes() < 5;
     }
 }
