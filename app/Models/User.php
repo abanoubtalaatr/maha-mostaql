@@ -97,4 +97,14 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     {
         return $this->last_active_at && Carbon::parse($this->last_active_at)->diffInMinutes() < 5;
     }
+
+    public function wallets()
+    {
+        return $this->hasMany(Wallet::class);
+    }
+
+    public function requestWithdraws()
+    {
+        return $this->hasMany(RequestWithdraw::class);
+    }
 }

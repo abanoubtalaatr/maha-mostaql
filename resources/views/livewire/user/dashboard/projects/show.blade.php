@@ -89,7 +89,11 @@
                                         @if(!(new \App\Services\ProjectService())->isProjectImplement($project->id))
                                             <button class="btn btn-primary mt-4" wire:click="acceptProposal({{$proposal->id}})"> قبول العرض </button>
                                         @endif
-                                        @endif
+
+                                            @if(\App\Helpers\isClient())
+                                                <a class="btn btn-primary mt-4" href="{{route('user.chats', ['receiver' => $proposal->user_id])}}">مراسلة</a>
+                                            @endif
+                                    @endif
                                 </div>
                                 <hr>
 

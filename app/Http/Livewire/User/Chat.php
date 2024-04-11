@@ -22,9 +22,10 @@ class Chat extends Component
 
     public function mount()
     {
-        $this->receiver = User::find(request()->query('chat'));
+        $this->receiver = User::find(request()->query('receiver'));
 
         $userId = \auth()->id();
+
         $this->users = User::joinSub(function ($query) use ($userId) {
             $query->selectRaw('distinct case when sender_id <> ? then sender_id else receiver_id end as user_id', [$userId])
                 ->from('chats')

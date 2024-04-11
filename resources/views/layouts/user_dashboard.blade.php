@@ -172,8 +172,8 @@
                         الرصيد
                     </a>
                 </li>
-                <li>
-                    <a href="dashboard-balance-history.html">
+                <li class="{{ \App\Helpers\activeUrl('user.request_withdraws') }}">
+                    <a href="{{route('user.request_withdraws')}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
                             <g id="gear-outlined-symbol" transform="translate(-0.005)">
                                 <g id="_x31__13_" transform="translate(0.005)">
@@ -185,6 +185,21 @@
                         </svg>
 
                         المعاملات المالية
+                    </a>
+                </li>
+
+                <li class="{{ \App\Helpers\activeUrl('user.wallet') }}">
+                    <a href="{{ route('user.wallet') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12">
+                            <g id="new-email-envelope-frontal-view" transform="translate(0 -76.5)">
+                                <g id="_x38__18_" transform="translate(0 76.5)">
+                                    <g id="Group_3685" data-name="Group 3685">
+                                        <path id="Path_1329" data-name="Path 1329" d="M8.5,83.5h-6a.5.5,0,0,0,0,1h6a.5.5,0,0,0,0-1Zm0,2h-6a.5.5,0,0,0,0,1h6a.5.5,0,0,0,0-1Zm5.5-9H2a2,2,0,0,0-2,2v8a2,2,0,0,0,2,2H14a2,2,0,0,0,2-2v-8A2,2,0,0,0,14,76.5Zm1,10a1,1,0,0,1-1,1H2a1,1,0,0,1-1-1v-8a1,1,0,0,1,1-1H14a1,1,0,0,1,1,1Zm-2-8H11a1,1,0,0,0-1,1v2a1,1,0,0,0,1,1h2a1,1,0,0,0,1-1v-2A1,1,0,0,0,13,78.5ZM13,81a.5.5,0,0,1-.5.5h-1A.5.5,0,0,1,11,81V80a.5.5,0,0,1,.5-.5h1a.5.5,0,0,1,.5.5Z" transform="translate(0 -76.5)"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                        الرصيد
                     </a>
                 </li>
 

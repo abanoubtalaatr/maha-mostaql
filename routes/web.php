@@ -65,6 +65,8 @@ Route::group([
             Route::get('projects', \App\Http\Livewire\Admin\Project\Index::class)->name('projects');
             Route::get('projects/{project}', \App\Http\Livewire\Admin\Project\Show::class)->middleware('can:Manage projects')->name('projects.show');
 
+            // request withdraws
+            Route::get('request-withdraws', App\Http\Livewire\Admin\RequestWithdraw\Index::class)->name("request_withdraws");
             //countries
             Route::get('countries', \App\Http\Livewire\Admin\Country\Index::class)->name('countries.index');
             Route::get('countries/create', \App\Http\Livewire\Admin\Country\Create::class)->name('countries.create');
@@ -101,40 +103,13 @@ Route::group([
     });
 });
 
-
-require __DIR__ . '/website.php';
-Route::get('send-sms', function (){
-    $data = [
-        "userName" => env('MESGAT_USER_NAME'),
-        "password" => env('MESGAT_PASSWORD'),
-        "userSender" => env('MESGAT_SENDER_NAME'),
-        "numbers" => "966582255234",
-        "apiKey" => env('MESGAT_KEY'),
-        "msg" => "verification code from bogi:1234",
-        "msgEncoding" => "UTF8",
-    ];
-    $client = new \GuzzleHttp\Client();
-    $res = $client->request('POST', 'https://www.msegat.com/gw/sendsms.php', [
-        'headers' => [
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'Accept-Language' => app()->getLocale() == 'ar' ? 'ar-Sa' : 'en-Uk',
-        ],
-        'body' => json_encode($data),
-    ]);
-
-    if ($res) {
-        $data = json_decode($res->getBody()->getContents());
-        dd($data);
-        if (isset($data->code)) {
-            //----- if code == 1 => Success, otherwise failed.
-            $code = $data->code;
-            $message = $data->message;
-
-            return $code == 1 ? 1 : $code;
-            // return response()->json(['code'=> $code,'message' => __($message)]);
-        }
-        return 0;
-    }
-    return 0;
+Route::get('payment', function (\Illuminate\Http\Request $request){
+    $userId = $request->input('us');
+    $amount = $request->input('amount');
+    $status = \App\Constants\WalletStatus::CAN_DRAW_WIDTH;
+    $walletType = \App\Constants\WalletType::CHARGE;
+    (new \App\Services\WalletService())->create(null,$userId,$amount, $status,$walletType);
+    return redirect()->to(\route('user.request_withdraws'));
 });
+require __DIR__ . '/website.php';
+

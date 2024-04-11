@@ -56,6 +56,15 @@
                     </a>
                 </li>
             @endcan
+
+            @can('Manage orders')
+                <li>
+                    <a href="{{route('admin.request_withdraws')}}">
+                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
+                        @lang('admin.request_withdraws')
+                    </a>
+                </li>
+            @endcan
 {{--            @can('Manage admins')--}}
 {{--                <li>--}}
 {{--                    <a href="{{route('admin.admins.index')}}">--}}

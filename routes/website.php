@@ -79,6 +79,9 @@ Route::group([
 
             });
 
+            Route::get('wallet', \App\Http\Livewire\User\Dashboard\Wallet::class)->name('wallet');
+
+            Route::get('history-balance', \App\Http\Livewire\User\Dashboard\RequestWithDraw::class)->name('request_withdraws');
         });/*authenticated users*/
     });
 });

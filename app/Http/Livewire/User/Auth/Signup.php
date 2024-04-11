@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\User\Auth;
 
+use App\Constants\UserTypes;
 use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,9 +24,9 @@ class Signup extends Component
     {
         if($request->has('account_type')){
             if($request->input('account_type') == 'مستقل') {
-                $this->form['account_type'] = 'freelancer';
+                $this->form['account_type'] = UserTypes::FREELANCER;
             }else{
-                $this->form['account_type'] = 'project_owner';
+                $this->form['account_type'] = UserTypes::CLIENT;
             }
         }
 

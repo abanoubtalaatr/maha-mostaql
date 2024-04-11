@@ -37,6 +37,12 @@ return [
     "countries" => 'البلدان',
     "edit" => "تعديل",
     "delete" => "حذف",
-    "specialties" => "التخصصات"
-
-];
+    "specialties" => "التخصصات",
+    "request_withdraws" => "طلبات السحب",
+    "username" => "اسم المستخدم",
+    "amount" => "المبلغ",
+    "paypal" => "بيبال",
+    "bank_account" => "رقم الحساب البنكي",
+    "bank_name" => "اسم البنك",
+    "card_name" => "اسم البطاقة",
+ ];

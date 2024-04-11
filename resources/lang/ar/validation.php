@@ -636,6 +636,12 @@ return [
         'about'  => 'نبذه عن',
         "invoke_date" => 'تاريخ اكمال المشروع',
         'period' => 'المدة',
-        "specialty_id" => "التخصص"
+        'withdraw_type' => 'نوع السحب ( بنك ، بيبال ) ',
+        "paypal_email" => "ايميل بيبال",
+        'bank_name' => "اسم البنك",
+        "bank_account"=> "رقم الحساب البنكي",
+        "card_name" => "اسم البطاقة",
+        "charge_type" => 'نوع الشحن',
+        "charge_amount" => 'مبلغ الشحن'
     ],
 ];

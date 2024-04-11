@@ -6,6 +6,7 @@ use App\Constants\ProjectStatus;
 use App\Constants\ProposalStatus;
 use App\Constants\RequestDeliverStatus;
 use App\Constants\WalletStatus;
+use App\Constants\WalletType;
 use App\Models\Proposal;
 
 class RequestDeliverService
@@ -37,7 +38,7 @@ class RequestDeliverService
         $this->sendGridService->sendMail('مبروك تم قبول طلب تسليمك علي المشروع', $proposal->user->email,$data,'emails.proposal.accept_request_deliver');
         // append in wallet with user id , amount (proposal dues) , proposal id, status ,
 
-        $this->walletService->create($proposalId, $proposal->user->id,$proposal->dues,WalletStatus::PENDING);
+        $this->walletService->create($proposalId, $proposal->user->id,$proposal->dues,WalletStatus::PENDING, WalletType::PROJECT_FEE);
 
 
         //update proposal accept request then update update the proposal status
