@@ -10,7 +10,7 @@ class Logo extends Component
 
     public function __construct($src = 'default-logo.png')
     {
-        $src = asset('assets_'.app()->getLocale())."/imgs/logo/logo.svg";
+        $src = asset("website/assets/images/company-logo.png");
         $this->src = $src ;
     }
 
