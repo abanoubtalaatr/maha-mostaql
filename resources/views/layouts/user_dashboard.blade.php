@@ -261,6 +261,23 @@
 
 
 </div>
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script>
+    Pusher.logToConsole = false;
+
+    var pusher = new Pusher('{{ env("PUSHER_APP_KEY") }}', {
+        cluster: '{{ env("PUSHER_APP_CLUSTER") }}',
+        forceTLS: true,
+        pusherOptions: {
+            authTimeout: 10000 // Set the authorization timeout to 10 seconds.
+        }
+    });
+
+    var channel = pusher.subscribe('chat');
+    channel.bind('message{{auth()->id()}}', function (data) {
+        Livewire.emit('messageReceived', data.message);
+    });
+</script>
 
 @include('partial.scripts')
 @livewireScripts()

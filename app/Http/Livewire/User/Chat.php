@@ -124,7 +124,7 @@ class Chat extends Component
 
     public function removeError()
     {
-//        $this->resetErrorBag('receiver');
+        $this->resetErrorBag('receiver');
     }
 
     public function render()
@@ -139,10 +139,9 @@ class Chat extends Component
                     $query->where('sender_id', $this->receiver->id)
                         ->where('receiver_id', Auth::id());
                 })
-                ->orderBy('created_at', 'asc')
-                ->get()->toArray();
-
-
+                ->orderBy('created_at', 'desc')
+                ->get()
+                ->toArray();
         }
 
         $messages = $this->messages;
