@@ -5,7 +5,7 @@
             <div class="login-back">
                 <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <x-langselect/>
+{{--                    <x-langselect/>--}}
 
                     <div class="login-form ">
                         @if($error_message)
