@@ -39,7 +39,7 @@
             <div class="col-md-12">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-light">
                     <div class="container-fluid px-0">
-                        <a class="navbar-brand" href="#"><img src="{{asset("website/assets/images/logo.png")}}" alt=""></a>
+                        <a class="navbar-brand" href="{{route('home')}}"><img src="{{asset("website/assets/images/logo.png")}}" alt=""></a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -49,13 +49,13 @@
                                     <a class="nav-link active" aria-current="page" href="/">الرئيسية</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="search-filter.html">المشاريع</a>
+                                    <a class="nav-link" href="{{route('projects.search')}}">المشاريع</a>
                                 </li>
 {{--                                <li class="nav-item">--}}
 {{--                                    <a class="nav-link" href="contact.html">تواصل معنا</a>--}}
 {{--                                </li>--}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html">من نحن</a>
+                                    <a class="nav-link" href="{{route('about')}}">من نحن</a>
                                 </li>
                             </ul>
                         </div>
@@ -92,7 +92,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="search-filter.html">
+                                <a class="nav-link" href="{{route('projects.search')}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14.063" viewBox="0 0 16 14.063">
                                         <path id="portfolio" d="M15.534,1.875H11.281V1.406A1.408,1.408,0,0,0,9.875,0H6.125A1.408,1.408,0,0,0,4.719,1.406v.469H.469A.47.47,0,0,0,0,2.344V12.656a1.408,1.408,0,0,0,1.406,1.406H14.594A1.408,1.408,0,0,0,16,12.656V2.352a.455.455,0,0,0-.466-.477ZM5.656,1.406A.469.469,0,0,1,6.125.937h3.75a.469.469,0,0,1,.469.469v.469H5.656Zm9.225,1.406L13.425,7.179a.468.468,0,0,1-.445.321H10.344V7.031a.469.469,0,0,0-.469-.469H6.125a.469.469,0,0,0-.469.469V7.5H3.02a.468.468,0,0,1-.445-.321L1.119,2.812ZM9.406,7.5v.938H6.594V7.5Zm5.656,5.156a.469.469,0,0,1-.469.469H1.406a.469.469,0,0,1-.469-.469V5.232l.748,2.244a1.4,1.4,0,0,0,1.334.962H5.656v.469a.469.469,0,0,0,.469.469h3.75a.469.469,0,0,0,.469-.469V8.438h2.637a1.4,1.4,0,0,0,1.334-.962l.748-2.244Zm0,0" transform="translate(0 0)"></path>
                                     </svg>
@@ -117,7 +117,7 @@
 {{--                                </a>--}}
 {{--                            </li>--}}
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html">
+                                <a class="nav-link" href="{{route('about')}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12">
                                         <g id="new-email-envelope-frontal-view" transform="translate(0 -76.5)">
                                             <g id="_x38__18_" transform="translate(0 76.5)">
@@ -207,31 +207,47 @@
                         <div class="input-group-text p-0 col-lg-3 col-md-3 col-6">
                             <span toggle="#password-field" class="field-icon toggle-password"><img src="{{asset("website/assets/images/location.png")}}" alt=""></span>
 
-                            <select class="form-select form-select-lg border-0 custom-input-padding form-select-search rounded-0">
+                            <select name="country" class="form-select form-select-lg border-0 custom-input-padding form-select-search rounded-0">
                                 <option>الدوله</option>
                                 @foreach($countries as $country)
-                                    <option>{{$country->name}}</option>
+                                    <option value="{{$country->id}}">{{$country->name}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="input-group-text p-0 col-lg-3 col-md-3 col-6">
                             <span toggle="#password-field" class="field-icon toggle-password"><img src="{{asset("website/assets/images/label.png")}}" alt=""></span>
 
-                            <select class="form-select form-select-lg border-0 custom-input-padding rounded-0">
+                            <select name="specialty" class="form-select form-select-lg border-0 custom-input-padding rounded-0">
                                 <option>التخصص</option>
-                                <option>One</option>
-                                <option>Two</option>
-                                <option>Three</option>
-                                <option>Four</option>
+                                @foreach(\App\Models\Specialty::query()->get() as $specialty)
+                                    <option value="{{$specialty->id}}">{{$specialty->name}}</option>
+                                @endforeach
                             </select>
                         </div>
-                        <input type="search" class="form-control col-lg-5 col-md-5 col-12 custom-input-padding" placeholder="ادخل نص البحث">
-                        <button class="input-group-text btn-1 col-1 text-center search-btn">
+                        <input type="search" name="title" class="form-control col-lg-5 col-md-5 col-12 custom-input-padding" placeholder="ادخل نص البحث">
+                        <button type="button" class="input-group-text btn-1 col-1 text-center search-btn" onclick="submitSearch()">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </section>
+<script>
+    function submitSearch() {
+        var country = document.querySelector('select[name="country"]').value;
+        var specialty = document.querySelector('select[name="specialty"]').value;
+        var title = document.querySelector('input[name="title"]').value;
+
+        var params = new URLSearchParams();
+        params.append('country', country);
+        params.append('specialty', specialty);
+        params.append('title', title);
+
+        var url = "{{ route('projects.search') }}?" + params.toString();
+
+        window.location.href = url;
+    }
+</script>

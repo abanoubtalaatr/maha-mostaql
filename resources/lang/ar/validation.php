@@ -635,6 +635,7 @@ return [
         "job_title"=> 'المسمي الوظيفي',
         'about'  => 'نبذه عن',
         "invoke_date" => 'تاريخ اكمال المشروع',
-        'period' => 'المدة'
+        'period' => 'المدة',
+        "specialty_id" => "التخصص"
     ],
 ];

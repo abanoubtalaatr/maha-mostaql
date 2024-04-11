@@ -8,6 +8,7 @@ use App\Models\Proposal;
 use App\Models\Setting;
 use App\Services\SettingService;
 use Livewire\Component;
+use function App\Helpers\isFreelancer;
 
 class Create extends Component
 {
@@ -17,6 +18,10 @@ class Create extends Component
 
     public function mount(Project $project)
     {
+        if(!isFreelancer()){
+            abort(403);
+        }
+
         $this->form['project_id'] = $project->id;
         $this->form['user_id'] = auth()->id();
         $this->project = $project;

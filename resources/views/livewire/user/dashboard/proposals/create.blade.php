@@ -30,7 +30,7 @@
                                 <!-- fav card footer -->
                                 <div class="d-flex my-4 justify-content-between align-items-center">
                                     <div class="d-flex gap-3 align-items-center">
-                                        <img src="{{$project->user->avatar}}" class="rounded-circle fav-card-profile-img">
+                                        <img src="{{asset('uploads/pics/'.$project->user->avatar)}}" class="rounded-circle fav-card-profile-img">
                                         <div>
                                             <p>{{$project->user->name}}</p>
                                             <p class="text-muted">{{\Illuminate\Support\Carbon::parse($project->created_at)->diffForHumans()}}</p>

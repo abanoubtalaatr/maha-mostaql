@@ -1,56 +1,51 @@
-<div>
-    <section class="head_banner">
-        <div class="layer">
-            &nbsp;
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="term_head">
-                        <h2>@lang('site.about_us')</h2>
-                    </div>
+<section class="jobs-company">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-5">
+                <div class="head-line">
+                    <h2>عن فرصتك</h2>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p class="mt-3">
+                    يقدم اسم المنصة وسيلة لربط الشركات وأصحاب المشاريع بأفضل
+                    المستقلين المحترفين لتنفيذ أفكارهم ومشاريعهم، مما يتيح لهم فرصة
+                    زيادة دخلهم وتحقيق أهدافهم. يمكن للمستخدمين إضافة مشاريعهم
+                    مجانًا والحصول على عروض من مستقلين مؤهلين، ومن ثم اختيار العرض
+                    المناسب والبدء في التعاون، مع ضمان حقوق كل من الطرفين حتى
+                    استكمال العمل بنجاح.
+                </p>
+                <ul class="details-list mt-5">
+                    <li class="mb-2">
+                        وسيلة فعّالة لربط الشركات وأصحاب المشاريع بأفضل المستقلين
+                        المحترفين.
+                    </li>
+                    <li class="mb-2">
+                        توفر المنصة فرصة للمستخدمين لزيادة دخلهم من خلال تنفيذ مشاريع
+                        متنوعة.
+                    </li>
+                    <li class="mb-2">
+                        يمكن للمستخدمين إضافة مشاريعهم مجانًا واستقبال عروض من مستقلين
+                        مؤهلين دون أي تكلفة مسبقة.
+                    </li>
+                    <li class="mb-2">
+                        توفر المنصة نظامًا لاختيار العرض المناسب والبدء في التعاون
+                        بسهولة ويسر.
+                    </li>
+                    <li class="mb-2">
+                        يتم ضمان حقوق كل من الطرفين، سواء اصحاب المشاريع أو المستقلين،
+                        حتى استكمال العمل بنجاح وتحقيق الأهداف المنشودة.
+                    </li>
+                </ul>
+                <a href="{{route('user.signupas')}}" class="btn btn-1 my-3">أنضم الان</a>
+            </div>
+            <div class="col-md-6">
+                <div class="video-box">
+                    <video controls="">
+                        <source src="{{asset('website/assets/images/test.mp4')}}" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </div>
-    </section>
-    <section class="terms_wrapper">
-        <div class="container">
-            <div class="row flex-reverse">
-                <div class="col-lg-6">
-                    <h3>@lang('site.our_mission')</h3>
-                    <p>{{$settings->mission}}</p>
-                </div>
-                <div class="col-lg-6">
-                    <div class="ab_img">
-                        <img src="{{url('uploads/pics/'. $settings->mission_image)}}" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-
-
-                <div class="col-lg-6">
-                    <div class="ab_img">
-                        <img src="{{url('uploads/pics/'. $settings->objective_image)}}" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <h3>@lang('site.our_objective')</h3>
-                    <p>{{$settings->objective}}</p>
-                </div>
-
-            </div>
-            <div class="row flex-reverse">
-                <div class="col-lg-6">
-                    <h3>@lang('site.our_vision')</h3>
-                    <p>{{$settings->vision}}</p>
-                </div>
-                <div class="col-lg-6">
-                    <div class="ab_img">
-                        <img src="{{url('uploads/pics/' . $settings->vision_image)}}" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
+    </div>
+</section>

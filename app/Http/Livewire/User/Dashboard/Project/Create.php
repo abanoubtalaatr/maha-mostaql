@@ -8,6 +8,7 @@ use App\Models\Project;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use function App\Helpers\isFreelancer;
 
 class Create extends Component
 {
@@ -23,7 +24,7 @@ class Create extends Component
         $priceAfterExplode = explode('-', $this->price);
 
         $this->validate([
-            'image' => 'image|max:1024', // Max file size of 1MB
+            'image' => 'nullable|image|max:1024', // Max file size of 1MB
         ]);
 
         $this->form['image'] =
@@ -65,7 +66,8 @@ class Create extends Component
             'form.period' => ['required', 'min:1', 'max:1000'],
             'form.description' => ['required', 'string', 'min:3', 'max:5000'],
             'form.image' => ['nullable'],
-            'price' => ['required']
+            'price' => ['required'],
+            'form.specialty_id' => ['required', 'exists:specialties,id']
         ];
     }
 

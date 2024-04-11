@@ -8,28 +8,28 @@
         <h2>@lang('site.dashboard')</h2>
         <div class="row">
             <div class="col-4 text-center">
-                <div class="dash box-shad" onclick='window.location.href="{{route('admin.users.index')}}'>
+                <div class="dash box-shad" >
                     <h4>{{$totalClients??0}}</h4>
                     <p class="grey">@lang('site.clients')</p>
                 </div>
             </div>
 
             <div class="col-4 text-center">
-                <div class="dash box-shad" onclick='window.location.href="{{route('admin.users.index')}}'>
+                <div class="dash box-shad" >
                     <h4>{{$totalFreelancers??0}}</h4>
                     <p class="grey">@lang('site.freelancers')</p>
                 </div>
             </div>
 
             <div class="col-4 text-center">
-                <div class="dash box-shad" onclick='window.location.href="{{route('admin.oil_brands')}}'>
+                <div class="dash box-shad" >
                     <h4>{{$totalProjects??0}}</h4>
                     <p class="grey">@lang('site.projects')</p>
                 </div>
             </div>
 
             <div class="col-4 text-center">
-                <div class="dash box-shad" onclick='window.location.href="{{route('admin.orders')}}'>
+                <div class="dash box-shad" >
                     <h4>{{$totalSpecialties??0}}</h4>
                     <p class="grey">@lang('site.specialties')</p>
                 </div>

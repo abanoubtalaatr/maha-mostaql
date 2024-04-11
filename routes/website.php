@@ -1,9 +1,7 @@
 <?php
 
-use App\Services\UrWayService;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\NotificationController;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -12,15 +10,18 @@ Route::group([
 
     Route::get('/', [\App\Http\Controllers\User\HomeController::class,'index'])->name('home');
     Route::get('page/{page}', \App\Http\Livewire\User\Page::class)->name('page');
-    Route::get('/services', \App\Http\Livewire\User\Service\Index::class)->name('services.index');
-    Route::get('/services/{service}', \App\Http\Livewire\User\Service\Show::class)->name('services.show');
     Route::get('/about', \App\Http\Livewire\User\About::class)->name('about');
+    Route::get('/faq', \App\Http\Livewire\User\faq::class)->name('faq');
+    Route::get('policy', \App\Http\Livewire\User\Policy::class)->name('policy');
 
+    Route::get('slider', \App\Http\Livewire\User\Slider::class)->name('slider');
     Route::view('error', 'livewire.user.error')->name('error');
 
     Route::get('/login/google', [\App\Http\Controllers\GoogleController::class, 'redirectToGoogle'])->name('login.google');
     Route::get('/login/google/callback', [\App\Http\Controllers\GoogleController::class, 'handleGoogleCallback']);
     Route::get('contact', \App\Http\Livewire\User\ContactUs::class)->name('contact');
+
+    Route::get('project-search', \App\Http\Livewire\User\ProjectSearch::class)->name('projects.search');
 
     Route::group(['as' => 'user.', 'prefix' => 'user/'], function () {
         Route::get('login', \App\Http\Livewire\User\Auth\Login::class)->name('login')->middleware('checkUserIsLogin');
@@ -78,7 +79,5 @@ Route::group([
             });
 
         });/*authenticated users*/
-
-
     });
 });

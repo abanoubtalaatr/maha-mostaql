@@ -20,7 +20,7 @@
                     <h4>القائمة</h4>
                     <ul>
                         <li><a href="{{route('home')}}">الرئيسية</a></li>
-                        <li><a href="search-filter.html">المشاريع</a></li>
+                        <li><a href="{{route('projects.search')}}">المشاريع</a></li>
 {{--                        <li><a href="contact.html">تواصل معنا</a></li>--}}
                     </ul>
                 </div>
@@ -28,9 +28,9 @@
                 <div class="col-lg-2 col-6 footer-menus">
                     <h4>القائمة</h4>
                     <ul>
-                        <li><a href="about.html">من نحن</a></li>
-                        <li><a href="policy.html">سياسة الاستخدام</a></li>
-                        <li><a href="faq.html">س و ج</a></li>
+                        <li><a href="{{route('about')}}">من نحن</a></li>
+                        <li><a href="{{route('policy')}}">سياسة الاستخدام</a></li>
+                        <li><a href="{{route('faq')}}">س و ج</a></li>
                     </ul>
                 </div>
 

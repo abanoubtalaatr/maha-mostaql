@@ -25,16 +25,24 @@
                             </div>
                             <!--  -->
                                     <div class="form-group first mb-2 d-flex gap-2 justify-content-between">
-
-                                <select wire:model="price" class="form-select shadow sort-of bg-white-2 w-100 black-text" aria-label="Default select example">
-                                    <option selected="">الميزانيه</option>
-                                    <option value="50-150">50$ : 150$</option>
-                                    <option value="150-350">150$ : 350$</option>
-                                    <option value="350">350$ : اكثر</option>
-                                </select>
-
-                            </div>
+                                        <select wire:model="price" class="form-select shadow sort-of bg-white-2 w-100 black-text" aria-label="Default select example">
+                                            <option selected="">الميزانيه</option>
+                                            <option value="50-150">50$ : 150$</option>
+                                            <option value="150-350">150$ : 350$</option>
+                                            <option value="350">350$ : اكثر</option>
+                                        </select>
+                                    </div>
                                     @error('price') <p class="text-danger">{{$message}}</p> @enderror
+
+                                    <div class="form-group first mb-2 d-flex gap-2 justify-content-between">
+                                        <select wire:model="form.specialty_id" class="form-select shadow sort-of bg-white-2 w-100 black-text" aria-label="Default select example">
+                                            <option value>التخصص</option>
+                                            @foreach(\App\Models\Specialty::all() as $specialty)
+                                                <option value="{{$specialty->id}}">{{$specialty->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @error('form.specialty_id') <p class="text-danger">{{$message}}</p> @enderror
 
                                     <div class="form-group first mb-4">
                                         <input type="text" wire:model="form.period" class="form-control shadow" placeholder="المدة" id="input2">
