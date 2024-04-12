@@ -70,7 +70,7 @@
                         </div>
                         @endforeach
                         @if($favorites->count() ==0 )
-                            <div class="text-center">
+                            <div class="text-center mt-3">
                                 <h3>لايوجد بيانات حاليا</h3>
                             </div>
                         @endif
