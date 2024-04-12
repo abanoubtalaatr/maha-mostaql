@@ -1,6 +1,6 @@
 <?php
 return [
-    'site_title' => 'مستقل',
+    'site_title' => 'معين',
     'title_ar' => 'الإسم بالعربية',
     'title_en' => 'الإسم بالانجليزية',
     'status' => 'الحالة',
