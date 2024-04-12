@@ -19,7 +19,8 @@
                     <!-- fav card container -->
                     <div class="w-100 d-flex-column">
                         <!-- fav card -->
-                        @foreach($favorites as $favorite)
+                        <div class="shadow fav-card-item">
+                            @foreach($favorites as $favorite)
                             <div class="shadow fav-card-item">
                             <!-- header of fav card -->
 
@@ -69,11 +70,12 @@
                             <!-- end of fav card footer -->
                         </div>
                         @endforeach
-                        @if($favorites->count() ==0 )
-                            <div class="text-center mt-3">
-                                <h3>لايوجد بيانات حاليا</h3>
-                            </div>
-                        @endif
+                                @if($favorites->count() ==0 )
+                                    <div class="text-center mt-3">
+                                        <h3>لايوجد بيانات حاليا</h3>
+                                    </div>
+                                @endif
+                        </div>
                         <!-- end of fav card -->
 
                     </div>
