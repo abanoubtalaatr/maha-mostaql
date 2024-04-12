@@ -140,7 +140,6 @@ class Chat extends Component
                     $query->where('sender_id', $this->receiver->id)
                         ->where('receiver_id', Auth::id());
                 })
-                ->orderBy('created_at', 'desc')
                 ->get()
                 ->toArray();
         }
