@@ -27,33 +27,40 @@
                         @endif
                         <form class="mt-2">
                             <div class="form-group first mb-4">
-                                <input type="email" class="form-control shadow" wire:model="email" placeholder="البريد الالكتروني" id="useremail">
+                                <input type="email" class="form-control shadow" wire:model="email"
+                                       placeholder="البريد الالكتروني" id="useremail">
                             </div>
 
                             <div class="form-group last mb-4">
-                                <input id="password-field" type="password" wire:model="password" class="form-control shadow" placeholder="كلمة المرور">
+                                <input id="password-field" type="password" wire:model="password"
+                                       class="form-control shadow" placeholder="كلمة المرور">
                             </div>
 
                             <div class="mb-5 mt-4 d-flex justify-content-between">
                                 <label class="form-check-label container-box" for="exampleCheck1">تذكرني
-                                    <input type="checkbox" class="form-check-input form-check-remmembr" id="exampleCheck1" checked="">
+                                    <input type="checkbox" class="form-check-input form-check-remmembr"
+                                           id="exampleCheck1" checked="">
                                     <span class="checkmark checkmark-2"></span>
                                 </label>
-                                <a href="{{route('user.forgot_password')}}" class="float-start forgot-pass">نسيت كلمه المرور</a>
+                                <a href="{{route('user.forgot_password')}}" class="float-start forgot-pass">نسيت كلمه
+                                    المرور</a>
                             </div>
 
                             <div class="d-grid text-center">
                                 <!-- change <a> to button later  -->
-                                <button wire:click="attempt" type="button" class="btn btn-1 mb-2 shadow">
-                                    تسجيل دخول
+                                <button id="spinner " wire:click="attempt" type="button" class="btn btn-1 mb-2 shadow">
+                                    @include('livewire.shared.spinner_html')
+                                    <span> تسجيل دخول</span>
                                 </button>
                                 <!--  -->
-                                <a type="button" href="{{route('login.google')}}"  class="btn btn-1 mb-2 shadow d-flex align-items-center justify-content-between px-4 btn-google-style">
+                                <a type="button" href="{{route('login.google')}}"
+                                   class="btn btn-1 mb-2 shadow d-flex align-items-center justify-content-between px-4 btn-google-style">
                                     <span> تسجيل الدخول عبر البريد الالكتروني </span>
                                     <img src="{{asset('website/assets/images/google.webp')}}" class="w-1-3">
                                 </a>
 
-                                <a href="{{route('user.signupas')}}" class="sign-in-link mt-2 mb-4">ليس لديك حساب؟ <span>سجل من هنا</span></a>
+                                <a href="{{route('user.signupas')}}" class="sign-in-link mt-2 mb-4">ليس لديك حساب؟
+                                    <span>سجل من هنا</span></a>
                             </div>
                         </form>
                     </div>
@@ -65,3 +72,5 @@
         </div>
     </div>
 </main>
+@include('livewire.shared.spinner_script')
+

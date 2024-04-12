@@ -32,9 +32,13 @@
                 </div>
             @endif
             <div class="modal-footer">
-                <button class="btn btn-light" wire:click="charge()">ارسال</button>
+                <button class="btn btn-light" id="spinner" wire:click="charge()">
+                    @include('livewire.shared.spinner_html')
+                    <span>ارسال</span>
+                </button>
                 <button type="button" class="btn btn-secondary" wire:click="toggleChargeWalletModal">اغلاق</button>
             </div>
         </div>
     </div>
 </div>
+@include('livewire.shared.spinner_script')

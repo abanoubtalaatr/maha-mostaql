@@ -15,9 +15,6 @@ class ForgotPassword extends Component
     public $number1='', $number2='', $number3='', $number4='';
     public $codeNotValid;
     public $password, $confirmation_password;
-
-
-
     public function incrementStep()
     {
         $this->step++;
@@ -28,15 +25,15 @@ class ForgotPassword extends Component
             'email' => 'required|email|exists:users,email'
         ]);
 
-//        $user = User::query()->whereEmail($this->email)->first();
+        $user = User::query()->whereEmail($this->email)->first();
 
         $code = rand(9999,1000);
 
         $data['code'] = $code;
 
-//        $this->sendEmailToUser($data);
+        $this->sendEmailToUser($data);
 
-//        $user->update(['verification_code' => $code]);
+        $user->update(['verification_code' => $code]);
 
         $this->step++;
     }
@@ -59,11 +56,12 @@ class ForgotPassword extends Component
 
         $user = User::query()->whereEmail($this->email)->first();
 
+
         if($user){
             if($user->verification_code == $code){
                 $this->step++;
             }else{
-                $this->codeNotValid = "كود غير صالح ";
+                $this->codeNotValid = "كود غير صالح ,  تآكد انك تكتب من اليمين الي اليسار ";
                 return 0;
             }
         }else{

@@ -6,12 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Livewire\Admin\Pages\Edit as PagesEdit;
 use App\Http\Livewire\Admin\Pages\Index as PagesIndex;
 use App\Http\Livewire\Admin\Settings as SettingsIndex;
-use App\Http\Livewire\Admin\Slider\Edit as SliderEdit;
 use App\Http\Livewire\Admin\Pages\Create as PagesCreate;
 use App\Http\Livewire\Admin\Pages\Delete as PagesDelete;
-use App\Http\Livewire\Admin\Slider\Index as SliderIndex;
-use App\Http\Livewire\Admin\Slider\Create as SliderCreate;
-use App\Http\Livewire\Admin\Slider\Delete as SliderDelete;
 use App\Http\Livewire\Admin\Role\Index as RoleIndex;
 use App\Http\Livewire\Admin\Role\Edit as RoleEdit;
 use App\Http\Livewire\Admin\Role\Create as RoleCreate;
@@ -81,19 +77,11 @@ Route::group([
             Route::get('contact', App\Http\Livewire\Admin\Contact\Index::class)->name('contacts');
             Route::get('contact/{contact}', \App\Http\Livewire\Admin\Contact\Show::class)->name('contact.show');
 
-            Route::get('slider/index', SliderIndex::class)->name('slider');
-            Route::get('slider/create', SliderCreate::class)->name('create_slider');
-            Route::get('slider/{slider}/edit', SliderEdit::class)->name('edit_slider');
-            Route::get('slider/{slider}/delete', SliderDelete::class)->name('delete_slider');
 
             Route::get('page/index', PagesIndex::class)->name('pages.index');
             Route::get('page/create', PagesCreate::class)->name('pages.create');
             Route::get('page/{page}/edit', PagesEdit::class)->name('pages.edit');
             Route::get('page/{page}/delete', PagesDelete::class)->name('pages.delete');
-
-            Route::get('opinions', \App\Http\Livewire\Admin\Opinion\Index::class)->middleware('can:Manage services')->name('opinions');
-            Route::get('opinions/create', \App\Http\Livewire\Admin\Opinion\Create::class)->middleware('can:Manage services')->name('create_opinions');
-            Route::get('opinions/{opinion}/edit', \App\Http\Livewire\Admin\Opinion\Edit::class)->middleware('can:Manage services')->name('edit_opinions');
 
 
             Route::get('settings', SettingsIndex::class)->name('settings');

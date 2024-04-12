@@ -40,7 +40,7 @@ class Signup extends Component
 
         $user = User::query()->create($this->form);
 
-        return redirect()->to(route('home'));
+        return redirect()->to(route('user.login'));
 
     }
 

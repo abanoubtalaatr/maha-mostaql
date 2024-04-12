@@ -29,8 +29,9 @@
                                     @error('email') <p class="text-danger mb-3">{{$message}}</p> @enderror
 
                                     <div class="d-grid text-center">
-                                        <button wire:click="sendEmail" type="button" class="btn btn-1 mb-2 shadow">
-                                            التالي
+                                        <button id="spinner" wire:click="sendEmail" type="button" class="btn btn-1 mb-2 shadow">
+                                            @include('livewire.shared.spinner_html')
+                                            <span>التالي</span>
                                         </button>
                                     </div>
                                 </div>
@@ -84,4 +85,6 @@
                 </div>
             </div>
         </div>
-    </div></main>
+    </div>
+</main>
+@include('livewire.shared.spinner_script')

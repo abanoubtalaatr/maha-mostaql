@@ -10,13 +10,13 @@
                     <div class="col-md-12">
                         <div class="d-flex mt-4 gap-3 align-items-center justify-content-between w-100 dash-job-search">
                             <select wire:model="status" class="form-select form-select-md custom-dropdown custom-input-padding shadow">
-                                <option>رتب حسب حالة العرض</option>
+                                <option value="">رتب حسب حالة العرض</option>
                                 @foreach(\App\Constants\ProposalStatus::all() as $proposal)
                                     <option value="{{$proposal}}">{{\App\Constants\ProposalStatus::getName($proposal)}}</option>
                                 @endforeach
                             </select>
                             <select wire:model="created_at" class="custom-dropdown shadow form-select form-select-md custom-input-padding">
-                                <option>عرض الاقدم للاحدث</option>
+                                <option value="">عرض الاقدم للاحدث</option>
                                 <option value="asc">اقدم</option>
                                 <option value="desc">احدث</option>
                             </select>

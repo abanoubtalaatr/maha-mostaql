@@ -14,7 +14,7 @@ Route::group([
     Route::get('/faq', \App\Http\Livewire\User\faq::class)->name('faq');
     Route::get('policy', \App\Http\Livewire\User\Policy::class)->name('policy');
 
-    Route::get('slider', \App\Http\Livewire\User\Slider::class)->name('slider');
+
     Route::view('error', 'livewire.user.error')->name('error');
 
     Route::get('/login/google', [\App\Http\Controllers\GoogleController::class, 'redirectToGoogle'])->name('login.google');

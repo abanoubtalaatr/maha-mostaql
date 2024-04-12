@@ -23,7 +23,7 @@ class Login extends Component
 
         if (Auth::attempt($credentials)) {
             // Authentication was successful
-            return redirect()->to(route('user.profile'));
+            return redirect()->to(route('user.owner.projects.all'));
         } else {
             // Authentication failed
             $this->message = 'بيانات غير صحيحة برجاء المحاولة مرة اخري';

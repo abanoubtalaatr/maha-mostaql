@@ -12,13 +12,22 @@
     <nav id="sidebar">
         <div class="pt-5">
             <a href="{{route('home')}}" class="img logo rounded-circle"><img src="{{asset('website/assets/images/logo.png')}}" alt=""></a>
-{{--            <div class="d-flex mb-5 side-company-card mt-3">--}}
-{{--                <img src="{{asset('website/assets/images/company-logo.png')}}" alt="" class="ms-3 company-logo">--}}
-{{--                <div class="company-info-2 pt-2">--}}
-{{--                    <h5>أسم الشركة هنا</h5>--}}
-{{--                    <p>المدينة , الدولة</p>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            <div class="d-flex mb-1 side-company-card mt-3">
+                <img src="{{asset('website/assets/images/company-logo.png')}}" alt="" class="ms-3 company-logo">
+                <div class="company-info-2 pt-2">
+                    <h5>معين</h5>
+                    <p>مكة , السعودية</p>
+                    <p>
+                        <strong style="font-size:12px"> الاسم : {{auth()->user()->first_name }}</strong>
+                    </p>
+                    <p>
+                        <strong style="font-size:12px"> نوع الحساب : {{\App\Constants\UserTypes::getName(auth()->user()->account_type) }}</strong>
+                    </p>
+
+                </div>
+            </div>
+
+
             <ul class="list-unstyled components mb-5 sidebar-container">
                 <li class="{{ \App\Helpers\activeUrl('user.owner.projects.all') }}">
                     <a href="{{route('user.owner.projects.all')}}">

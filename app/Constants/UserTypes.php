@@ -19,9 +19,9 @@ class UserTypes
     {
         switch ($type) {
             case self::CLIENT:
-                return 'Client';
+                return 'صاحب مشاريع';
             case self::FREELANCER:
-                return 'Freelancer';
+                return 'مستقل';
             default:
                 return 'Unknown';
         }
