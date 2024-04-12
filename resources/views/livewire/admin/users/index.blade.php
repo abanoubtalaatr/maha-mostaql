@@ -40,9 +40,6 @@
                     </select>
                 </div>
 
-                <div class="form-group col-3 mt-4">
-                    <button wire:click="resetData()" class="btn btn-primary form-control contact-input">@lang('site.reset')</button>
-                </div>
             </div>
 
             @if(count($records))

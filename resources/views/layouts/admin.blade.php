@@ -51,7 +51,8 @@
             @can('Manage orders')
                 <li>
                     <a href="{{route('admin.projects')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
+                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/dashboard.svg"
+                             alt="">
                         @lang('site.projects')
                     </a>
                 </li>
@@ -60,7 +61,8 @@
             @can('Manage orders')
                 <li>
                     <a href="{{route('admin.request_withdraws')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
+                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/dashboard.svg"
+                             alt="">
                         @lang('admin.request_withdraws')
                     </a>
                 </li>
@@ -84,7 +86,8 @@
             @can('Manage users')
                 <li>
                     <a href="{{route('admin.users.index')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
+                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/dashboard.svg"
+                             alt="">
                         @lang('site.users')
                     </a>
                 </li>
@@ -93,14 +96,16 @@
 
                 <li>
                     <a href="{{route('admin.countries.index')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
+                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/dashboard.svg"
+                             alt="">
                         @lang('admin.countries')
                     </a>
                 </li>
 
             <li>
                 <a href="{{route('admin.specialties.index')}}">
-                    <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
+                    <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/dashboard.svg"
+                         alt="">
                     @lang('admin.specialties')
                 </a>
             </li>
@@ -137,7 +142,8 @@
             @can('Manage settings')
                 <li>
                     <a href="{{route('admin.settings')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg" alt="">
+                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/dashboard.svg"
+                             alt="">
                         @lang('messages.settings')
                     </a>
                 </li>
@@ -150,12 +156,21 @@
 {{--                    </a>--}}
 {{--                </li>--}}
 {{--            @endcan--}}
-            <li><a href="{{route('admin.profile')}}"><img
-                        src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/tasks.svg"
-                        alt="">@lang('site.profile')</a></li>
-            <li><a href="{{route('admin.logout')}}"><img
-                        src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/logout.svg"
-                        alt="">@lang('messages.logout')</a></li>
+            <li>
+                <a href="{{route('admin.profile')}}">
+                    <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/dashboard.svg"
+                         alt="">
+
+                    @lang('site.profile')</a>
+            </li>
+            <li>
+                <a href="{{route('admin.logout')}}">
+                    <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/dashboard.svg"
+                         alt="">
+
+                    @lang('messages.logout')
+                </a>
+            </li>
         </div>
     </div>
     <div id="page-content-wrapper">
@@ -210,6 +225,9 @@
 
 </script>
 <style>
+    .sidebar-nav li a {
+        color: white;
+    }
     .slick-list {
         height: 100% !important;
     }
