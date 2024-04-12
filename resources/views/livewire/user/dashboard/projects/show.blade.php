@@ -56,8 +56,8 @@
                                     <h4 class="mt-2">
                                         <a href="{{route('user.shared.user.details',$project->user->id)}}">
                                             <strong> المستقل : </strong>
-                                            @if($project->user->avatar)
-                                                <img src="{{asset("uploads/pics/". $project->user->avatar)}}" class="rounded-circle fav-card-profile-img">
+                                            @if($proposal->user->avatar)
+                                                <img src="{{asset("uploads/pics/". $proposal->user->avatar)}}" class="rounded-circle fav-card-profile-img">
                                             @else
                                                 <img src="{{asset('website/assets/images/Avatar wrap.png')}}" class="rounded-circle fav-card-profile-img">
                                             @endif
