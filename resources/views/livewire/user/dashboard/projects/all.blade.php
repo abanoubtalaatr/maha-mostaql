@@ -37,8 +37,10 @@
                                 </div>
                                 <!--  -->
                                 <div class="d-flex gap-2 align-items-center fav-card-buttons">
-                                    @if(!(new \App\Services\ProposalService())->applyBefore($project->id, auth()->id()))
-                                    <a href="{{route('user.client.proposals.create', $project->id)}}" class="btn btn-preseved-jobs">تقدم</a>
+                                    @if(\App\Helpers\isFreelancer())
+                                        @if(!(new \App\Services\ProposalService())->applyBefore($project->id, auth()->id()))
+                                            <a href="{{route('user.client.proposals.create', $project->id)}}" class="btn btn-preseved-jobs">تقدم</a>
+                                        @endif
                                     @endif
                                     @if(!(new \App\Services\FavouriteService())->projectIsFavourite($project->id))
                                         <button class="fav-card-fav-btn" wire:click="makeFavourite({{$project->id}})">
