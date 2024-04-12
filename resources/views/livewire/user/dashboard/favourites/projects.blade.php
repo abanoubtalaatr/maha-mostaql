@@ -69,6 +69,11 @@
                             <!-- end of fav card footer -->
                         </div>
                         @endforeach
+                        @if($favorites->count() ==0 )
+                            <div class="text-center">
+                                <h3>لايوجد بيانات حاليا</h3>
+                            </div>
+                        @endif
                         <!-- end of fav card -->
 
                     </div>
