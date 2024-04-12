@@ -24,11 +24,9 @@
 
                                 <div class="d-flex gap-3  first mb-4">
                                     @if($user->avatar)
-                                        <img src="{{asset("$user->avatar")}}" class="rounded-circle fav-card-profile-img">
-
+                                        <img src="{{asset("uploads/pics/". $user->avatar)}}" class="rounded-circle fav-card-profile-img">
                                     @else
                                         <img src="{{asset('website/assets/images/Avatar wrap.png')}}" class="rounded-circle fav-card-profile-img">
-
                                     @endif
                                 </div>
                                 <div class="d-flex gap-3 first mb-4">
