@@ -26,7 +26,7 @@ class ProposalService
         $data['project'] = $proposal->project;
 
         //send email to user your proposal is acceptable
-        ( new SendGridService())->sendMail("Your proposal has been accepted", $proposal->user->email,$data, 'emails.proposal.accept');
+        ( new SendGridService())->sendMail("Your proposal has been accepted", $proposal->user->email,$data, 'emails.Proposal.accept');
 
         //update the reset of proposal on this project with excluded
         Proposal::query()->where('project_id', $proposal->project->id)->where('id', '!=', $proposal->id)->update(['status' => ProposalStatus::EXCLUDED]);
