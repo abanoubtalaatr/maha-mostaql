@@ -50,8 +50,12 @@
                             <!-- fav card footer -->
                             <div class="d-flex my-4 justify-content-between align-items-center">
                                 <div class="d-flex gap-3 align-items-center">
-                                    <img src="{{asset('website/assets/images/Avatar wrap.png')}}" class="rounded-circle fav-card-profile-img">
-                                    <div>
+                                    @if($project->user->avatar)
+                                        <img src="{{asset("uploads/pics/". $project->user->avatar)}}" class="rounded-circle fav-card-profile-img">
+                                    @else
+                                        <img src="{{asset('website/assets/images/Avatar wrap.png')}}" class="rounded-circle fav-card-profile-img">
+                                    @endif
+                                        <div>
                                         <p>{{$project->user? $project->user->name : ""}}</p>
                                         <p class="text-muted">{{\Illuminate\Support\Carbon::parse($project->created_at)->diffForHumans()}}</p>
                                     </div>

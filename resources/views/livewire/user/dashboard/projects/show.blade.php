@@ -56,7 +56,11 @@
                                     <h4 class="mt-2">
                                         <a href="{{route('user.shared.user.details',$project->user->id)}}">
                                             <strong> المستقل : </strong>
-                                            <img class="mx-1 rounded-circle" height="40" width="40"  src="{{asset('website/assets/images/proj-2.png')}}">
+                                            @if($project->user->avatar)
+                                                <img src="{{asset("uploads/pics/". $project->user->avatar)}}" class="rounded-circle fav-card-profile-img">
+                                            @else
+                                                <img src="{{asset('website/assets/images/Avatar wrap.png')}}" class="rounded-circle fav-card-profile-img">
+                                            @endif
                                             <span> {{$proposal->user->first_name . ' ' . $proposal->user->last_name}}</span>
 
                                         </a>
