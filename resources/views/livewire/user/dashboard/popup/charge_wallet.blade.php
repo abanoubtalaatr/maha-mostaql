@@ -1,6 +1,6 @@
 <div class="modal" id="charge" style="display: block">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="background: linear-gradient(to right, #475770, #2b313b);">
+        <div class="modal-content" style="background: linear-gradient(to right, #475770, #2b313b);color:white">
             <div class="modal-header">
                 <h5 class="modal-title" id="sendEmailModalLabel">شحن الرصيد</h5>
                 <button type="button" class="close border-0 p-0 bg-none px-2 rounded" wire:click="toggleChargeWalletModal" data-dismiss="modal" aria-label="Close" onclick="$('#withdrawModal').modal('hide');">
