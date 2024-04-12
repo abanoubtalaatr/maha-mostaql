@@ -76,12 +76,13 @@
                                     <p class="mx-2">{{$proposal->price}}</p>
                                 </div>
 
+
+                            </div>
+
                                 <div class="align-items-center d-flex fav-card-number mx-3">
                                     <p class="text-muted mx-3">العرض </p>
                                     <p class="mx-2">{{$proposal->description}}</p>
                                 </div>
-
-                            </div>
                                 <hr>
                                 @if($proposal->status == 2)
                                 <button class="btn btn-warning" wire:click="requestToDeliverProposal({{$proposal->id}})">طلب تسليم الصفقة </button>
