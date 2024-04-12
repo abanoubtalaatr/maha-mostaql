@@ -54,7 +54,7 @@
                             @foreach($project->proposals as $proposal)
                                 <div>
                                     <h4 class="mt-2">
-                                        <a href="{{route('user.shared.user.details',$project->user->id)}}">
+                                        <a href="{{route('user.shared.user.details',$proposal->user->id)}}">
                                             <strong> المستقل : </strong>
                                             @if($proposal->user->avatar)
                                                 <img src="{{asset("uploads/pics/". $proposal->user->avatar)}}" class="rounded-circle fav-card-profile-img">
