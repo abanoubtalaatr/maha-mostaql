@@ -16,7 +16,6 @@ class GoogleController extends Controller
 
     public function handleGoogleCallback()
     {
-        try {
             $googleUser = Socialite::driver('google')->user();
 
             // Check if the user already exists in your database
@@ -37,10 +36,7 @@ class GoogleController extends Controller
 
             // Redirect the user to the desired page
             return redirect()->route('user.profile');
-        } catch (\Exception $e) {
-            // Handle the exception, in this case, redirecting to a 404 page
-            return redirect()->route('error');
-        }
+
     }
 
 }
