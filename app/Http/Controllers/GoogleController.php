@@ -26,7 +26,7 @@ class GoogleController extends Controller
                 $user = User::create([
                     'first_name' => $googleUser->name,
                     'email' => $googleUser->email,
-                    'type' => UserTypes::FREELANCER,
+                    'account_type' => UserTypes::FREELANCER,
                     // Add other necessary fields as per your User model
                 ]);
             }
