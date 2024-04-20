@@ -49,7 +49,7 @@ class ProposalService
             $proposal->update(['status' => ProposalStatus::ACCEPT]);
 
 
-            return redirect()->to((new PayPalPaymentService())->pay($data));
+            return redirect()->to((new PayPalPaymentService())->pay($paymentData));
         } catch (Exception) {
             DB::rollback();
         }
