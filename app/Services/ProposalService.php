@@ -23,9 +23,11 @@ class ProposalService
 
     public function acceptProposal($proposal)
     {
+
         try {
             DB::beginTransaction();
             $proposal = Proposal::query()->find($proposal);
+
 
             $data['project'] = $proposal->project;
 
@@ -37,6 +39,8 @@ class ProposalService
 
             $paymentData['price'] = $proposal->price;
             $paymentData['project'] = $proposal->project->id;
+            $paymentData['id'] = auth()->id();
+
 
             //update project status
             $proposal->project()->update(['status' => ProjectStatus::IMPLEMENTS]);
@@ -44,7 +48,8 @@ class ProposalService
             // update proposal with accept
             $proposal->update(['status' => ProposalStatus::ACCEPT]);
 
-            return redirect()->away((new PayPalPaymentService())->pay($data));
+
+            return redirect()->to((new PayPalPaymentService())->pay($data));
         } catch (Exception) {
             DB::rollback();
         }

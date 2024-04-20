@@ -18,6 +18,7 @@ class PayPalPaymentService
         $paypalToken = $provider->getAccessToken();
         $url =  url('/') . "/api/payment?payment_type=paypal&amount=$amount&us=" . $data['id'];
 
+
         $response = $provider->createOrder([
             "intent" => "CAPTURE",
             "application_context" => [
@@ -34,10 +35,12 @@ class PayPalPaymentService
             ]
         ]);
 
+
         if (isset($response['id']) && $response['id'] != null) {
             // redirect to approve href
             foreach ($response['links'] as $links) {
                 if ($links['rel'] == 'approve') {
+
                     return $links['href'];
                 }
             }
