@@ -12,7 +12,7 @@ class Index extends Component
     use WithPagination;
 
     public $status;
-    public $perPage =10;
+    public $perPage = 10;
     protected $paginationTheme = 'bootstrap';
 
     public function mount()
@@ -28,6 +28,7 @@ class Index extends Component
     public function accept(Project $project)
     {
         $project->update(['status' => ProjectStatus::OFFERS]);
+        return redirect()->to(route('admin.projects'));
     }
 
     public function getRecords()

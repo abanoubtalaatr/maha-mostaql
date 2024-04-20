@@ -21,7 +21,13 @@ class Login extends Component
             'password' => $this->password,
         ];
 
+
         if (Auth::attempt($credentials)) {
+            if (is_null(auth()->user()->email_verified_at)) {
+                auth()->logout();
+                $this->message = 'برجاء تفعيل حسابك، افحص بريدك الاكتروني';
+                return;
+            }
             // Authentication was successful
             return redirect()->to(route('user.owner.projects.all'));
         } else {

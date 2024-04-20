@@ -392,7 +392,7 @@ textarea {
 }
 /* end upload button */
 .error-404 {
-  background: url(../images/Error-bg-v2.png) no-repeat;
+  background: url(../images/new-Error-bg-v2.png) no-repeat;
   /* background-position: 0 -1px; */
   background-size: fill;
   height: 100vh;
@@ -429,7 +429,7 @@ textarea {
 }
 /* start navbar index style */
 .main-page {
-  background: url(../images/Error-bg-v2.png) no-repeat;
+  background: url(../images/new-Error-bg-v2.png) no-repeat;
   background-position: 0 -1px;
   /* background: var(--main-color); */
   height: 100%;
@@ -1996,6 +1996,8 @@ height: 80px; */
   aspect-ratio: 1 / 1;
   box-sizing: border-box;
   border-radius: 40px;
+  background : #435168;
+color: #fff;
 }
 
 .btn-delete-red {

@@ -51,9 +51,11 @@
             @can('Manage orders')
                 <li>
                     <a href="{{route('admin.projects')}}">
-                        <img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/dashboard.svg"
-                             alt="">
-                        @lang('site.projects')
+
+                        <i class="fas fa-bell"></i>
+
+                        <span class="text-danger mx-1" style="color: red"> ( {{\App\Models\Project::query()->where('status', \App\Constants\ProjectStatus::REVIEW)->count()}} )</span>
+                        <span class="mx">@lang('site.projects')</span>
                     </a>
                 </li>
             @endcan
