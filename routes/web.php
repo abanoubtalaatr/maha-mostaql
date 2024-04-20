@@ -1,18 +1,20 @@
 <?php
 
+use App\Models\Project;
+use App\Constants\PaymentStatus;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Front\ContactUs;
 use App\Http\Controllers\HomeController;
+use App\Http\Livewire\Admin\Role\Edit as RoleEdit;
 use App\Http\Livewire\Admin\Pages\Edit as PagesEdit;
+use App\Http\Livewire\Admin\Role\Index as RoleIndex;
+use App\Http\Livewire\Admin\Admins\Edit as AdminEdit;
 use App\Http\Livewire\Admin\Pages\Index as PagesIndex;
+use App\Http\Livewire\Admin\Role\Create as RoleCreate;
 use App\Http\Livewire\Admin\Settings as SettingsIndex;
+use App\Http\Livewire\Admin\Admins\Index as AdminIndex;
 use App\Http\Livewire\Admin\Pages\Create as PagesCreate;
 use App\Http\Livewire\Admin\Pages\Delete as PagesDelete;
-use App\Http\Livewire\Admin\Role\Index as RoleIndex;
-use App\Http\Livewire\Admin\Role\Edit as RoleEdit;
-use App\Http\Livewire\Admin\Role\Create as RoleCreate;
-use App\Http\Livewire\Admin\Admins\Index as AdminIndex;
-use App\Http\Livewire\Admin\Admins\Edit as AdminEdit;
 use App\Http\Livewire\Admin\Admins\Create as AdminCreate;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
@@ -24,7 +26,7 @@ Route::group([
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
 ], function () {
 
-//    Route::get('/', [HomeController::class, 'index'])->name('homepage');
+    //    Route::get('/', [HomeController::class, 'index'])->name('homepage');
     Route::get('contact-us', ContactUs::class)->name('contact_us');
     Route::get('page/{page}', [HomeController::class, 'showPage'])->name('show_page');
 
@@ -55,7 +57,7 @@ Route::group([
 
             Route::get('users', \App\Http\Livewire\Admin\Users\Index::class)->middleware("can:Manage users")->name('users.index');
             Route::get('users/{user}/edit', \App\Http\Livewire\Admin\Users\Edit::class)->middleware("can:Manage users")->name('users.edit');
-            Route::get('/users/create',\App\Http\Livewire\Admin\Users\Create::class )->name('create_user');
+            Route::get('/users/create', \App\Http\Livewire\Admin\Users\Create::class)->name('create_user');
 
             //projects
             Route::get('projects', \App\Http\Livewire\Admin\Project\Index::class)->name('projects');
@@ -86,18 +88,22 @@ Route::group([
 
             Route::get('settings', SettingsIndex::class)->name('settings');
 
-            Route::get('notifications', \App\Http\Livewire\Admin\Notifications::class )->name('notifications');
+            Route::get('notifications', \App\Http\Livewire\Admin\Notifications::class)->name('notifications');
         });
     });
 });
 
-Route::get('payment', function (\Illuminate\Http\Request $request){
+Route::get('payment', function (\Illuminate\Http\Request $request) {
     $userId = $request->input('us');
     $amount = $request->input('amount');
+    $projectId = $request->input('project');
+    if ($projectId) {
+        $project = Project::find($projectId);
+        $project->update(['payment_status' => PaymentStatus::PAID]);
+    }
     $status = \App\Constants\WalletStatus::CAN_DRAW_WIDTH;
     $walletType = \App\Constants\WalletType::CHARGE;
-    (new \App\Services\WalletService())->create(null,$userId,$amount, $status,$walletType);
+    (new \App\Services\WalletService())->create(null, $userId, $amount, $status, $walletType);
     return redirect()->to(\route('user.request_withdraws'));
 });
 require __DIR__ . '/website.php';
-

@@ -11,16 +11,18 @@ class PayPalPaymentService
     public function pay($data)
     {
         $amount = $data['price'];
+        $projectId = isset($data['project']) ? $data['project'] : null;
+
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();
-        $url =  url('/'). "/api/payment?payment_type=paypal&amount=$amount&us=". $data['id'];
+        $url =  url('/') . "/api/payment?payment_type=paypal&amount=$amount&us=" . $data['id'];
 
         $response = $provider->createOrder([
             "intent" => "CAPTURE",
             "application_context" => [
-                "return_url" => url('/'). "/payment?payment_type=paypal&amount=$amount&us=". $data['id'],
-//                "cancel_url" => url('/'). "/api/payment?payment_type=paypal&booking_id=". $data['id'],
+                "return_url" => url('/') . "/payment?payment_type=paypal&project=$projectId&amount=$amount&us=" . $data['id'],
+                //                "cancel_url" => url('/'). "/api/payment?payment_type=paypal&booking_id=". $data['id'],
             ],
             "purchase_units" => [
                 0 => [
@@ -39,7 +41,6 @@ class PayPalPaymentService
                     return $links['href'];
                 }
             }
-
         } else {
             return redirect()
                 ->route('/')

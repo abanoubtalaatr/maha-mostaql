@@ -53,9 +53,9 @@
 
                             <td>
                                 <div class="actions">
-                                    @if($record->status == \App\Constants\ProjectStatus::REVIEW)
-                                        <button class="btn btn-primary" wire:click="accept({{$record->id}})">@lang('admin.accept')</button>
-                                    @endif
+                                     @if($record->status == \App\Constants\ProjectStatus::REVIEW)
+                                         <button class="btn btn-primary" wire:click="accept({{$record->id}})">@lang('admin.accept')</button>
+                                     @endif
                                 </div>
                             </td>
                             @endforeach

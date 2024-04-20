@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use Exception;
+use App\Models\Proposal;
 use App\Constants\ProjectStatus;
 use App\Constants\ProposalStatus;
+use Illuminate\Support\Facades\DB;
 use App\Constants\RequestDeliverStatus;
-use App\Models\Proposal;
 
 class ProposalService
 {
@@ -21,21 +23,31 @@ class ProposalService
 
     public function acceptProposal($proposal)
     {
-        $proposal = Proposal::query()->find($proposal);
+        try {
+            DB::beginTransaction();
+            $proposal = Proposal::query()->find($proposal);
 
-        $data['project'] = $proposal->project;
+            $data['project'] = $proposal->project;
 
-        //send email to user your proposal is acceptable
-        ( new SendGridService())->sendMail("Your proposal has been accepted", $proposal->user->email,$data, 'emails.Proposal.accept');
+            //send email to user your proposal is acceptable
+            (new SendGridService())->sendMail("Your proposal has been accepted", $proposal->user->email, $data, 'emails.Proposal.accept');
 
-        //update the reset of proposal on this project with excluded
-        Proposal::query()->where('project_id', $proposal->project->id)->where('id', '!=', $proposal->id)->update(['status' => ProposalStatus::EXCLUDED]);
+            //update the reset of proposal on this project with excluded
+            Proposal::query()->where('project_id', $proposal->project->id)->where('id', '!=', $proposal->id)->update(['status' => ProposalStatus::EXCLUDED]);
 
-        //update project status
-        $proposal->project()->update(['status'=> ProjectStatus::IMPLEMENTS]);
+            $paymentData['price'] = $proposal->price;
+            $paymentData['project'] = $proposal->project->id;
 
-        // update proposal with accept
-        $proposal->update(['status' => ProposalStatus::ACCEPT]);
+            //update project status
+            $proposal->project()->update(['status' => ProjectStatus::IMPLEMENTS]);
+
+            // update proposal with accept
+            $proposal->update(['status' => ProposalStatus::ACCEPT]);
+
+            return redirect()->away((new PayPalPaymentService())->pay($data));
+        } catch (Exception) {
+            DB::rollback();
+        }
     }
 
     public function isProposalAccepted($proposal)
@@ -49,13 +61,13 @@ class ProposalService
 
         $data['project'] = $proposal->project;
 
-        (new SendGridService())->sendMail('طلب تسليم الصفقة', $proposal->user->email, $data,'emails.proposal.request_deliver_project');
+        (new SendGridService())->sendMail('طلب تسليم الصفقة', $proposal->user->email, $data, 'emails.proposal.request_deliver_project');
 
         $proposal->update(['request_to_deliver' => 1, 'status_request_to_deliver' => RequestDeliverStatus::PENDING]);
     }
 
     public function isRequestToDeliver($proposalId)
     {
-        return Proposal::query()->where('id',$proposalId)->where('request_to_deliver', 1)->where('status_request_to_deliver', RequestDeliverStatus::PENDING)->exists();
+        return Proposal::query()->where('id', $proposalId)->where('request_to_deliver', 1)->where('status_request_to_deliver', RequestDeliverStatus::PENDING)->exists();
     }
 }

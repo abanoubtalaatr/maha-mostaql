@@ -5,9 +5,13 @@ namespace App\Http\Livewire\User\Dashboard\Project;
 use App\Constants\ProjectStatus;
 use App\Http\Livewire\Traits\ValidationTrait;
 use App\Models\Project;
+use App\Services\PayPalPaymentService;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Srmklive\PayPal\Providers\PayPalServiceProvider;
+use Srmklive\PayPal\Services\PayPal;
+
 use function App\Helpers\isFreelancer;
 
 class Create extends Component
@@ -32,6 +36,7 @@ class Create extends Component
             $this->image->storeAs(date('Y/m/d'), Str::random(50) . '.' . $this->image->extension(), 'public') : null;
 
         $priceFrom = $priceAfterExplode[0];
+
         if (isset($priceAfterExplode[1])) {
             $priceTo = $priceAfterExplode[1];
         } else {
