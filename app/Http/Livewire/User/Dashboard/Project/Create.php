@@ -28,14 +28,14 @@ class Create extends Component
         ]);
 
         $this->form['image'] =
-            $this->image?
-                $this->image->storeAs(date('Y/m/d'),Str::random(50).'.'.$this->image->extension(),'public') : null;
+            $this->image ?
+            $this->image->storeAs(date('Y/m/d'), Str::random(50) . '.' . $this->image->extension(), 'public') : null;
 
         $priceFrom = $priceAfterExplode[0];
-        if(isset($priceAfterExplode[1])){
+        if (isset($priceAfterExplode[1])) {
             $priceTo = $priceAfterExplode[1];
-        }else{
-            $priceTo  =0;
+        } else {
+            $priceTo  = 0;
         }
 
         $this->form['price_from'] = $priceFrom;
@@ -62,7 +62,7 @@ class Create extends Component
     {
         return [
             'form.title' => ['required', 'string', 'min:3', 'max:200'],
-            'form.link' => ['nullable', 'url'],
+            'form.link' => ['nullable'],
             'form.period' => ['required', 'min:1', 'max:1000'],
             'form.description' => ['required', 'string', 'min:3', 'max:5000'],
             'form.image' => ['nullable'],
