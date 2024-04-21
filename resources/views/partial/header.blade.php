@@ -192,7 +192,7 @@
                     </div>
                     <div class="col-md-5">
                         <div class="hero-box">
-                            <img src="{{asset("website/assets/images/hero.png")}}" alt="">
+                            <img src="{{asset("website/assets/images/Blogging-bro-new.png")}}" alt="">
                         </div>
                     </div>
                 </div>
