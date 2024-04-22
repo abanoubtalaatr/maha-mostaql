@@ -34,10 +34,10 @@
 <div id="wrapper">
     <!--Sidebar-->
     <div id="sidebar-wrapper">
-        <div class="sidebar-nav">
-            <div class="logo-wrap bg-white mb-5">
+        <div class="sidebar-nav pt-3">
+            {{-- <div class="logo-wrap bg-white mb-5">
                 <x-logo />
-            </div>
+            </div> --}}
             @can('Manage dashboard')
                 <li>
                     <a href="{{route('admin.dashboard')}}">

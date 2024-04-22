@@ -16,9 +16,10 @@
 
                     <form wire:submit.prevent="attempt" method='post'>
 {{--                        <div class="login-logo"><img src="{{asset('frontAssets')}}/assets_{{app()->getLocale()}}/imgs/home/logo.svg" alt=""></div>--}}
-                   <div class="login-logo bg-white p-3 mb-3 rounded">
+                   {{-- <div class="login-logo bg-white p-3 mb-3 rounded">
                        <x-logo />
-                   </div>
+                   </div> --}}
+                   <h2 class="text-white">مُعيين</h2>
 
                         @if(session()->has('in_active_message'))
                             <div class="alert alert-danger">

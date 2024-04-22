@@ -21,18 +21,18 @@ class All extends Component
     {
         return Project::query()
             ->where('status', '!=', ProjectStatus::REVIEW)
-            ->when($this->filter, function ($query){
+            ->when($this->filter, function ($query) {
                 $query->where('price_from', $this->filter);
-            })->paginate(config('app.per_page'));
+            })->latest()->paginate(config('app.per_page'));
     }
 
     public function makeFavourite($projectId)
     {
         $favourite = (new FavouriteService())->projectIsFavourite($projectId, auth()->id());
 
-        if(!$favourite){
+        if (!$favourite) {
             (new FavouriteService())->create($projectId, auth()->id());
-        }else{
+        } else {
             (new FavouriteService())->delete($projectId, auth()->id());
         }
     }
@@ -40,6 +40,6 @@ class All extends Component
     public function render()
     {
         $projects = $this->getRecords();
-        return view('livewire.user.dashboard.projects.all',compact('projects') )->layout('layouts.user_dashboard');
+        return view('livewire.user.dashboard.projects.all', compact('projects'))->layout('layouts.user_dashboard');
     }
 }
