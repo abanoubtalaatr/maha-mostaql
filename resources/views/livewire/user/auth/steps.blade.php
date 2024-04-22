@@ -23,21 +23,6 @@
                         </div>
 
                         <form class="mt-2">
-                            @if($step ==1)
-                                <div class="step-1">
-                                    <div class="form-group first mb-2">
-                                        <input type="email" wire:model="email" class="form-control shadow" placeholder="البريد الالكتروني" id="useremail">
-                                    </div>
-                                    @error('email') <p class="text-danger mb-3">{{$message}}</p> @enderror
-
-                                    <div class="d-grid text-center">
-                                        <button id="spinner" wire:click="sendEmail" type="button" class="btn btn-1 mb-2 shadow">
-                                            @include('livewire.shared.spinner_html')
-                                            <span>التالي</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            @endif
 
                             @if($step == 2)
                                     <div class="step-2">

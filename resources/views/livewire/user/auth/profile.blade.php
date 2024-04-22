@@ -1,7 +1,9 @@
 <div>
     <div class="nav-sm">
         <div class="logo">
-            <img src="{{asset('website/assets/images/logo.png')}}" alt="">
+            <div class="w-25">
+                <x-logo />
+            </div>
         </div>
         <button type="button" id="sidebarCollapse" class="btn btn-primary">
             <i class="fa fa-bars"></i>

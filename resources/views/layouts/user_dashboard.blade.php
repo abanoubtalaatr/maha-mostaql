@@ -15,7 +15,7 @@
             <div class="d-flex mb-1 side-company-card mt-3">
                 <img src="{{asset('website/assets/images/company-logo.png')}}" alt="" class="ms-3 company-logo">
                 <div class="company-info-2 pt-2">
-                    <h5>معين</h5>
+                    <h5>مُعيين</h5>
                     <p>مكة , السعودية</p>
                     <p>
                         <strong style="font-size:12px"> الاسم : {{auth()->user()->first_name }}</strong>

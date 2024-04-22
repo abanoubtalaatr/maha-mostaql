@@ -6,9 +6,11 @@ use App\Constants\ProjectStatus;
 use App\Http\Livewire\Traits\ValidationTrait;
 use App\Models\Project;
 use App\Services\PayPalPaymentService;
+use App\Services\SendGridService;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use SendGrid;
 use Srmklive\PayPal\Providers\PayPalServiceProvider;
 use Srmklive\PayPal\Services\PayPal;
 
@@ -53,6 +55,10 @@ class Create extends Component
 
         Project::query()->create($this->form);
 
+        // send email to the client
+        $clientEmail = env('CLIENT_EMAIL', 'moaeen2024@gmail.com');
+
+        (new SendGridService())->sendMail('تم اضافة مشروع جديد علي المنصة', $clientEmail, [], 'emails.projects.new-project');
         return redirect()->route('user.owner.projects.index');
     }
 

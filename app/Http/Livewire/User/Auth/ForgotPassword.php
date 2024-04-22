@@ -5,6 +5,7 @@ namespace App\Http\Livewire\User\Auth;
 use App\Models\User;
 use App\Services\SendGridService;
 use Livewire\Component;
+
 class ForgotPassword extends Component
 {
     public $step = 1;
@@ -12,7 +13,7 @@ class ForgotPassword extends Component
     public $email;
     public $mobile;
     public $message;
-    public $number1='', $number2='', $number3='', $number4='';
+    public $number1 = '', $number2 = '', $number3 = '', $number4 = '';
     public $codeNotValid;
     public $password, $confirmation_password;
     public function incrementStep()
@@ -27,7 +28,7 @@ class ForgotPassword extends Component
 
         $user = User::query()->whereEmail($this->email)->first();
 
-        $code = rand(9999,1000);
+        $code = rand(9999, 1000);
 
         $data['code'] = $code;
 
@@ -52,19 +53,19 @@ class ForgotPassword extends Component
     }
     public function verifyCode()
     {
-        $code = $this->number1 . $this->number2 . $this->number3. $this->number4;
+        $code = $this->number1 . $this->number2 . $this->number3 . $this->number4;
 
         $user = User::query()->whereEmail($this->email)->first();
 
 
-        if($user){
-            if($user->verification_code == $code){
+        if ($user) {
+            if ($user->verification_code == $code) {
                 $this->step++;
-            }else{
+            } else {
                 $this->codeNotValid = "كود غير صالح ,  تآكد انك تكتب من اليمين الي اليسار ";
                 return 0;
             }
-        }else{
+        } else {
             $this->codeNotValid = "كود غير صالح ";
             return 0;
         }
@@ -72,8 +73,7 @@ class ForgotPassword extends Component
 
     public function sendEmailToUser($data)
     {
-        (new SendGridService())->sendMail('Verification Email', $this->email,$data,'emails.auth.sendCode');
-
+        (new SendGridService())->sendMail('Verification Email', $this->email, $data, 'emails.auth.sendCode');
     }
     public function render()
     {

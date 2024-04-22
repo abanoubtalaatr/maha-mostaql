@@ -13,11 +13,11 @@
     }
 </script>
 
-<script src="{{asset('website/assets/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('website/assets/js/jquery.js')}}"></script>
-<script src="{{asset('website/assets/js/popper.min.js')}}"></script>
-<script src="{{asset('website/assets/js/code.js')}}"></script>
-<script src="{{asset('website/assets/js/slick.min.js')}}"></script>
+<script src="{{ asset('website/assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('website/assets/js/jquery.js') }}"></script>
+<script src="{{ asset('website/assets/js/popper.min.js') }}"></script>
+<script src="{{ asset('website/assets/js/code.js') }}"></script>
+<script src="{{ asset('website/assets/js/slick.min.js') }}"></script>
 
 <script>
     $(".responsive").slick({
@@ -25,16 +25,13 @@
         rtl: true,
         infinite: true,
         arrows: true,
-        prevArrow:
-            '<img src="{{asset('website/assets/images/left.png')}}" alt="" class= "left-arrow">',
-        nextArrow:
-            '<img src="{{asset("website/assets/images/right.png")}}" alt="" class= "right-arrow">',
+        prevArrow: '<img src="{{ asset('website/assets/images/left.png') }}" alt="" class= "left-arrow">',
+        nextArrow: '<img src="{{ asset('website/assets/images/right.png') }}" alt="" class= "right-arrow">',
         speed: 200,
         slidesToShow: 3,
         slidesToScroll: 3,
         autoplay: true,
-        responsive: [
-            {
+        responsive: [{
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 2,
@@ -65,18 +62,18 @@
 </script>
 
 <script>
-    (function ($) {
+    (function($) {
         "use strict";
 
-        var fullHeight = function () {
+        var fullHeight = function() {
             $(".js-fullheight").css("height", $(window).height());
-            $(window).resize(function () {
+            $(window).resize(function() {
                 $(".js-fullheight").css("height", $(window).height());
             });
         };
         fullHeight();
 
-        $("#sidebarCollapse").on("click", function () {
+        $("#sidebarCollapse").on("click", function() {
             $("#sidebar").toggleClass("active");
         });
     })(jQuery);
@@ -95,6 +92,7 @@
                 preview.style.display = "block";
             }
         }
+
         function myImgRemove(number) {
             document.getElementById("file-ip-" + number + "-preview").src =
                 "https://i.ibb.co/ZVFsg37/default.png";
@@ -103,5 +101,4 @@
         number++;
     } while (number < 5);
 </script>
-
-
+    

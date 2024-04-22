@@ -9,7 +9,9 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8 col-md-10">
                         <div class="logo-box">
-                            <img src="{{asset('website/assets/images/logo-login.png')}}" alt="">
+                            <div class="w-25">
+                                <x-logo />
+                            </div>
                         </div>
                         <div class="log-dis">
                             <h3 class="mb-2 t-color-primary">انشاء حساب جديد</h3>
