@@ -304,6 +304,8 @@ textarea {
 
 /* Style the indicator (dot/circle) */
 .container-box .checkmark:after {
+    content: "\2713";
+  color: #fff;
   top: 4px;
   left: 4px;
   width: 18px;

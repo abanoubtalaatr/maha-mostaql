@@ -28,8 +28,9 @@
                                 </li>
                             </ul>
                             <div class="d-flex mt-4">
-                                <img src="{{asset('website/assets/images/company-logo.png')}}" alt="" class="ms-3 company-logo"/>
-
+                                <div class="w-25 mx-2">
+                                    <x-logo />
+                                </div>
                                 <div class="company-info pt-2">
                                     <h5>{{$project->user->first_name . '  ' . $project->user->last_name}}</h5>
                                     <p>

@@ -4,13 +4,13 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Logo extends Component
+class WhiteLogo extends Component
 {
     public $src;
 
     public function __construct($src = 'default-logo.png')
     {
-        $src = asset("website/assets/images/logo-black.png");
+        $src = asset("website/assets/images/logo-white.png");
         $this->src = $src;
     }
 
@@ -21,6 +21,7 @@ class Logo extends Component
      */
     public function render()
     {
-        return view('components.logo');
+
+        return view('components.white-logo');
     }
 }

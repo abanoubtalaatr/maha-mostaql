@@ -8,7 +8,12 @@
             <div class="row">
                 <div class="col-lg-4 col-12">
                     <div class="address">
-                        <img src="{{asset("website/assets/images/logo.png")}}" alt="">
+                        {{-- <img src="{{asset("website/assets/images/logo.png")}}" alt=""> --}}
+                        <div class="w-75">
+                            <x-whiteLogo />
+                        </div>
+
+
                         <p class="mb-4 mt-4">
                             يقدم فرصتك وسيلة لربط الشركات وأصحاب المشاريع بأفضل
                             المستقلين المحترفين لتنفيذ أفكارهم ومشاريعهم بكفاءة وفاعلية.
