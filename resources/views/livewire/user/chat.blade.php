@@ -89,6 +89,7 @@
                     <form wire:submit.prevent="send">
                         <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-2"
                              >
+
                             <div class="col-lg-12 col-md-12 col-sm-12 my-2">
                                 <label for="">رسالتك</label>
                                 <textarea wire:model.defer="message" class="form-control text-right" id=""
@@ -96,6 +97,8 @@
                                 @error('message') <span class="error text-danger">{{ $message }}</span> @enderror
                                 @error('receiver') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
+                            <div wire:loading wire:target="file"> <i class="fas fa-spinner fa-spin"></i> </div>
+
                             <div class="col-lg-6 col-md-6 col-sm-12 my-2">
                                 <label for="">اضافه ملفات</label>
                                 <input type="file" wire:model="file">
@@ -117,3 +120,8 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('livewire-upload-progress', event => {
+    @this.progress = Math.floor(event.detail.progress);
+    });
+</script>

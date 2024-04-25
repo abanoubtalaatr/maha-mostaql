@@ -19,6 +19,9 @@ class Chat extends Component
     public $users;
     public $lastMessage = '';
     public $file;
+    public $loading = false; // Add a loading state variable
+    public $progress;
+
 
     public function mount()
     {
@@ -34,17 +37,18 @@ class Chat extends Component
         }, 'chats', function ($join) {
             $join->on('users.id', '=', 'chats.user_id');
         })->get();
-
-
     }
 
     public function send()
     {
         $this->validate();
+        $this->loading = true; // Set loading state to true during file upload
 
         if (isset($this->file) && !empty($this->file)) {
             $this->file = $this->file->storeAs(date('Y/m/d'), Str::random(50) . '.' . $this->file->extension(), 'public');
         }
+
+        $this->loading = false; // Set loading state to false after file upload is complete
 
         if (!$this->receiver) {
             $this->addError('receiver', 'برجاء اختيار عضو لبدء المجادثه.');
@@ -110,7 +114,6 @@ class Chat extends Component
                 ->where('receiver_id', auth()->id())
                 ->whereNull('receiver_read_at')
                 ->update(['receiver_read_at' => now()]);
-
         } else {
 
             \App\Models\Chat::where('sender_id', auth()->id())
@@ -120,7 +123,6 @@ class Chat extends Component
         }
 
         $this->removeError();
-
     }
 
     public function removeError()

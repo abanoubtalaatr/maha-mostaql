@@ -16,10 +16,12 @@ class ForgotPassword extends Component
     public $number1 = '', $number2 = '', $number3 = '', $number4 = '';
     public $codeNotValid;
     public $password, $confirmation_password;
+
     public function incrementStep()
     {
         $this->step++;
     }
+
     public function sendEmail()
     {
         $this->validate([
@@ -38,6 +40,7 @@ class ForgotPassword extends Component
 
         $this->step++;
     }
+
     public function resetPassword()
     {
         $this->validate([
@@ -51,6 +54,7 @@ class ForgotPassword extends Component
 
         return redirect()->route('user.login');
     }
+
     public function verifyCode()
     {
         $code = $this->number1 . $this->number2 . $this->number3 . $this->number4;
