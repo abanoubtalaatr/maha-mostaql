@@ -97,7 +97,6 @@
                                 @error('message') <span class="error text-danger">{{ $message }}</span> @enderror
                                 @error('receiver') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
-                            <div wire:loading wire:target="file"> <i class="fas fa-spinner fa-spin"></i> </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-12 my-2">
                                 <label for="">اضافه ملفات</label>
@@ -105,6 +104,11 @@
                                 @error('file') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
                         </div>
+                        @if($file)
+                        <p class="text-danger">تم رفع الملف </p>
+                        @endif
+                        <div wire:loading wire:target="file"> <i class="fas fa-spinner fa-spin"></i> </div>
+
                         <button type="submit" class="btn btn-primary">ارسال الان</button>
                     </form>
                     <ul class="alert-warning p-2 rounded mt-3">
