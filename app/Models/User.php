@@ -31,6 +31,16 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         $this->attributes['password'] = Hash::make($value);
     }
 
+    public static function CountUnReadMessagesInChat($userId = null)
+    {
+        if ($userId === null) {
+            $userId = auth()->id();
+        }
+
+        return Chat::where('receiver_id', $userId)->whereNull('receiver_read_at')->count();
+    }
+
+
     public function notifications()
     {
         return $this->hasMany(Notification::class);

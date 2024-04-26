@@ -28,6 +28,9 @@ Route::group([
     Route::group(['as' => 'user.', 'prefix' => 'user/'], function () {
         Route::get('login', \App\Http\Livewire\User\Auth\Login::class)->name('login')->middleware('checkUserIsLogin');
         Route::get('forgot-password', \App\Http\Livewire\User\Auth\ForgotPassword::class)->middleware('checkUserIsLogin')->name('forgot_password');
+        Route::get('forgot-password-step-2/{email}', \App\Http\Livewire\User\Auth\ForgotPasswordStep2::class)->middleware('checkUserIsLogin')->name('forgot_password_step_2');
+        Route::get('forgot-password-step-3/{email}', \App\Http\Livewire\User\Auth\ForgotPasswordStep3::class)->middleware('checkUserIsLogin')->name('forgot_password_step_3');
+
         Route::get('sign-up', \App\Http\Livewire\User\Auth\Signup::class)->middleware('checkUserIsLogin')->name('signup');
         Route::get('sign-up-as', \App\Http\Livewire\User\Auth\SignupAs::class)->middleware('checkUserIsLogin')->name('signupas');
 

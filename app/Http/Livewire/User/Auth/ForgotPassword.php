@@ -38,42 +38,9 @@ class ForgotPassword extends Component
 
         $user->update(['verification_code' => $code]);
 
-        $this->step++;
+        return redirect()->to(route('user.forgot_password_step_2', ['email' => $this->email]));
     }
 
-    public function resetPassword()
-    {
-        $this->validate([
-            'password'     => ['required', 'string', 'min:3'],
-            'confirmation_password' => ['same:password'],
-        ]);
-
-        $user = User::query()->whereEmail($this->email)->first();
-
-        $user->update(['password' => $this->password, 'verification_code' =>  null]);
-
-        return redirect()->route('user.login');
-    }
-
-    public function verifyCode()
-    {
-        $code = $this->number1 . $this->number2 . $this->number3 . $this->number4;
-
-        $user = User::query()->whereEmail($this->email)->first();
-
-
-        if ($user) {
-            if ($user->verification_code == $code) {
-                $this->step++;
-            } else {
-                $this->codeNotValid = "كود غير صالح ,  تآكد انك تكتب من اليمين الي اليسار ";
-                return 0;
-            }
-        } else {
-            $this->codeNotValid = "كود غير صالح ";
-            return 0;
-        }
-    }
 
     public function sendEmailToUser($data)
     {
@@ -81,6 +48,6 @@ class ForgotPassword extends Component
     }
     public function render()
     {
-        return view('livewire.user.auth.forgot-password')->layout('layouts.user_auth');
+        return view('livewire.user.auth.forgot-password-step-1')->layout('layouts.user_auth');
     }
 }

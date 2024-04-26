@@ -21,11 +21,13 @@ class Chat extends Component
     public $file;
     public $loading = false; // Add a loading state variable
     public $progress;
+    public $audio, $audioFile;
 
 
     public function mount()
     {
         $this->receiver = User::find(request()->query('receiver'));
+
 
         $userId = \auth()->id();
 
@@ -39,10 +41,22 @@ class Chat extends Component
         })->get();
     }
 
+    public function messageReceived($data)
+    {
+        $this->messages[] = $data;
+    }
+
+
     public function send()
     {
         $this->validate();
         $this->loading = true; // Set loading state to true during file upload
+
+
+
+        if (isset($this->audio) && !empty($this->audio)) {
+            $this->audioFile = $this->audio->storeAs(date('Y/m/d'), Str::random(50) . '.' . $this->audio->extension(), 'public');
+        }
 
         if (isset($this->file) && !empty($this->file)) {
             $this->file = $this->file->storeAs(date('Y/m/d'), Str::random(50) . '.' . $this->file->extension(), 'public');
@@ -59,6 +73,7 @@ class Chat extends Component
         $message->receiver_id = $this->receiver->id;
         $message->message = $this->message;
         $message->file = $this->file;
+        $message->audio = $this->audioFile;
 
         $message->save();
 
@@ -76,30 +91,28 @@ class Chat extends Component
             'message' => $message->load('sender', 'receiver')
         ];
 
-
-        $pusher->trigger('chat', "message$message->receiver_id", $data);
+        $pusher->trigger('chat', "message", $data);
 
         $this->message = '';
         $this->file = '';
+        $this->audio = null;
+        $this->dispatchBrowserEvent('deleteRecord');
     }
 
     public function getListeners()
     {
         return [
-            'messageReceived' => 'addMessage'
+            'messageReceived' => 'messageReceived',
         ];
     }
 
-    public function addMessage($message)
-    {
-        $this->messages[] = $message;
-    }
 
     protected function rules()
     {
         return [
             'message' => 'required',
             'file' => 'nullable',
+            'audio' => 'nullable',
         ];
     }
 
@@ -109,18 +122,33 @@ class Chat extends Component
         $this->receiver = User::find($receiverId);
 
 
-        if (\auth()->id() != $receiverId) {
-            \App\Models\Chat::where('sender_id', $this->receiver->id)
-                ->where('receiver_id', auth()->id())
-                ->whereNull('receiver_read_at')
-                ->update(['receiver_read_at' => now()]);
-        } else {
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            [
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                'useTLS' => true
+            ]
+        );
 
-            \App\Models\Chat::where('sender_id', auth()->id())
+        if (\auth()->id() != $receiverId) {
+            $chats = \App\Models\Chat::where('sender_id', $this->receiver->id)
+                ->where('receiver_id', auth()->id())
+                ->whereNull('receiver_read_at');
+
+            $pusher->trigger('chat', "countZero", $chats->count());
+
+            $chats->update(['receiver_read_at' => now()]);
+        } else {
+            $chats = \App\Models\Chat::where('sender_id', auth()->id())
                 ->where('receiver_id', $this->receiver->id)
-                ->whereNull('sender_read_at')
-                ->update(['sender_read_at' => now()]);
+                ->whereNull('sender_read_at');
+
+            $pusher->trigger('chat', "countZero", $chats->count());
+            $chats->update(['sender_read_at' => now()]);
         }
+
 
         $this->removeError();
     }
@@ -142,8 +170,8 @@ class Chat extends Component
                     $query->where('sender_id', $this->receiver->id)
                         ->where('receiver_id', Auth::id());
                 })
-                ->get()
-                ->toArray();
+                ->oldest()
+                ->get()->toArray(); // Remove the ->toArray() method call
         }
 
         $messages = $this->messages;

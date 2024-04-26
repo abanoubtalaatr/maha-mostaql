@@ -17,10 +17,10 @@
                     </p>
                     <ul class="down-icone">
                         <li>
-                            <a href="#"><img src="{{asset("website/assets/images/download-1.png")}}" alt=""></a>
+                            {{-- <a href="#"><img src="{{asset("website/assets/images/download-1.png")}}" alt=""></a> --}}
                         </li>
                         <li>
-                            <a href="#"><img src="{{asset("website/assets/images/download-2.png")}}" alt=""></a>
+                            {{-- <a href="#"><img src="{{asset("website/assets/images/download-2.png")}}" alt=""></a> --}}
                         </li>
                     </ul>
                 </div>

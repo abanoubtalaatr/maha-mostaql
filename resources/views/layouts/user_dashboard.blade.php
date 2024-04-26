@@ -10,8 +10,10 @@
 <div class="wrapper d-flex align-items-stretch">
     <!-- start sidebar -->
     <nav id="sidebar">
-        <div class="pt-5">
-            <a href="{{route('home')}}" class="img logo rounded-circle"><img src="{{asset('website/assets/images/logo.png')}}" alt=""></a>
+        <div class="pt-1">
+            <a href="{{route('home')}}" class="img logo rounded-circle">
+                <x-whiteLogo />
+            </a>
             <div class="d-flex mb-1 side-company-card mt-3">
                 <img src="{{asset('website/assets/images/company-logo.png')}}" alt="" class="ms-3 company-logo">
                 <div class="company-info-2 pt-2">
@@ -228,6 +230,7 @@
                     </a>
                 </li>
                 <li class="{{ \App\Helpers\activeUrl('user.chats') }}">
+                
                     <a href="{{route('user.chats')}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18.286" viewBox="0 0 16 18.286">
                             <g id="copy-two-paper-sheets-interface-symbol" transform="translate(-43.714)">
@@ -240,7 +243,7 @@
                                 </g>
                             </g>
                         </svg>
-
+                        <span class="text-danger"  id="chatId"> {{\App\Models\User::CountUnReadMessagesInChat()}}  </span>
                     المحادثات
                     </a>
                 </li>
@@ -283,12 +286,32 @@
     });
 
     var channel = pusher.subscribe('chat');
-    channel.bind('message{{auth()->id()}}', function (data) {
-        Livewire.emit('messageReceived', data.message);
+    channel.bind('message', function (data) {
+        if (data['message']['receiver_id'] == '{{ auth()->id() }}') {
+
+            var chatIdElement = document.getElementById('chatId');
+        
+            var currentCount = parseInt(document.getElementById('chatId').textContent.trim());
+            
+            var newCount = currentCount + 1;
+        
+            chatIdElement.textContent = newCount;
+        }
     });
+   
+    channel.bind('countZero', function (data) {
+        
+            var chatIdElement = document.getElementById('chatId');
+              
+            chatIdElement.textContent = 0;
+        
+    });
+
 </script>
 
+
 @include('partial.scripts')
+
 @livewireScripts()
 </body>
 </html>
