@@ -58,7 +58,7 @@ class Create extends Component
         // send email to the client
         $clientEmail = env('CLIENT_EMAIL', 'moaeen2024@gmail.com');
 
-        (new SendGridService())->sendMail('تم اضافة مشروع جديد علي المنصة', $clientEmail, [], 'emails.projects.new-project');
+        (new SendGridService())->sendMail('تم اضافة مشروع جديد علي المنصة', $clientEmail, [], 'emails.project.new-project');
         return redirect()->route('user.owner.projects.index');
     }
 

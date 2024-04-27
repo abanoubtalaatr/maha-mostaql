@@ -1,12 +1,12 @@
 <section class="download">
     <div class="container">
         <div class="row d-flex flex-reverse">
-            <div class="col-md-6">
+            <div class="col-md-6 mx-auto">
                 <div class="app-box">
                     <img src="{{asset("website/assets/images/app.png")}}" alt="">
                 </div>
             </div>
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
                 <div class="app-info">
                     <h6>حمل</h6>
                     <h3>وتابع لحظه بلحظة</h3>
@@ -24,7 +24,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>

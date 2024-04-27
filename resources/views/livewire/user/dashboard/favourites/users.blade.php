@@ -32,9 +32,7 @@
                                     </div>
                                 <!--  -->
                                     <div class="d-flex gap-2 align-items-center fav-card-buttons">
-                                        <button class="btn btn-preseved-jobs">
-                                            تواصل الان
-                                        </button>
+                                        
                                     @if((new \App\Services\FavouriteService())->userIsFavourite($favorite->favoritable->id))
                                         <button class="fav-card-fav-btn" wire:click="makeUserFavourite({{$favorite->favoritable->id}})">
                                             <img src="{{asset("website/assets/images/fav-icon.png")}}">

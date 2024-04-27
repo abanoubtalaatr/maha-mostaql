@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <label>اختار </label>
+            
 
                 <div class="mb-3">
                     <label for="withdraw-amount" class="form-label">المبلغ</label>
@@ -17,17 +17,17 @@
 
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="withdraw-option" id="paypal-option" value="paypal" wire:model="withdraw_type">
-                    <label class="form-check-label" for="paypal-option">بيبال</label>
+                    <label class="form-check-label" for="paypal-option">Paypal</label>
                 </div>
 
-                <div class="form-check">
+                {{-- <div class="form-check">
                     <input class="form-check-input" type="radio" name="withdraw-option" id="bank-option" value="bank" wire:model="withdraw_type">
                     <label class="form-check-label" for="bank-option">بنك</label>
-                </div>
+                </div> --}}
 
                 @if($withdraw_type == 'paypal')
                     <div class="mb-3">
-                        <label for="paypal-email" class="form-label"> البريد الإلكتروني ( بيبال )</label>
+                        <label for="paypal-email" class="form-label"> البريد الإلكتروني ( Paypal )</label>
                         <input id="paypal-email" wire:model="paypal_email" type="email" class="form-control shadow rad-20 py-2" placeholder="ادخل بريد Paypal">
                     </div>
                 @endif

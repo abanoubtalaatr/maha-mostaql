@@ -18,10 +18,11 @@ class Chat extends Component
     public $receiver;
     public $users;
     public $lastMessage = '';
-    public $file;
+    public $files = [];
     public $loading = false; // Add a loading state variable
     public $progress;
     public $audio, $audioFile;
+    public $filePaths;
 
 
     public function mount()
@@ -58,8 +59,17 @@ class Chat extends Component
             $this->audioFile = $this->audio->storeAs(date('Y/m/d'), Str::random(50) . '.' . $this->audio->extension(), 'public');
         }
 
-        if (isset($this->file) && !empty($this->file)) {
-            $this->file = $this->file->storeAs(date('Y/m/d'), Str::random(50) . '.' . $this->file->extension(), 'public');
+        if (isset($this->files) && !empty($this->files)) {
+            foreach ($this->files as $file) {
+                // Store the file and get the path
+                $filePath = $file->storeAs(date('Y/m/d'), Str::random(50) . '.' . $file->extension(), 'public');
+
+                // Concatenate the file path to the existing string, separating them with '|'
+                $this->filePaths .= $filePath . '|';
+            }
+
+            // Remove the l ast '|' character from the concatenated string
+            $this->filePaths = rtrim($this->filePaths, '|');
         }
 
         $this->loading = false; // Set loading state to false after file upload is complete
@@ -72,7 +82,7 @@ class Chat extends Component
         $message->sender_id = Auth::id();
         $message->receiver_id = $this->receiver->id;
         $message->message = $this->message;
-        $message->file = $this->file;
+        $message->file = $this->filePaths;
         $message->audio = $this->audioFile;
 
         $message->save();
@@ -111,7 +121,7 @@ class Chat extends Component
     {
         return [
             'message' => 'required',
-            'file' => 'nullable',
+            'files' => 'nullable',
             'audio' => 'nullable',
         ];
     }

@@ -16,13 +16,13 @@
 
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="withdraw-option" id="paypal-option" value="paypal" wire:model="charge_type">
-                    <label class="form-check-label" for="paypal-option">بيبال</label>
+                    <label class="form-check-label" for="paypal-option">Paypal</label>
                 </div>
 
-                <div class="form-check">
+                {{-- <div class="form-check">
                     <input class="form-check-input" type="radio" name="withdraw-option" id="bank-option" value="bank" wire:model="charge_type">
                     <label class="form-check-label" for="bank-option">بنك</label>
-                </div>
+                </div> --}}
 
                 @error('charge_type')<p class="text-danger">{{ $message }}</p> @enderror
             </div>
