@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-4 col-12">
                     <div class="address">
-                        {{-- <img src="{{asset("website/assets/images/logo.png")}}" alt=""> --}}
+                      
                         <div class="w-75">
                             <x-whiteLogo />
                         </div>

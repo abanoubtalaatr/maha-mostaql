@@ -33,7 +33,9 @@
             <div class="col-md-12">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-light">
                     <div class="container-fluid px-0">
-                        <a class="navbar-brand" href="/"><img src="{{asset("website/assets/images/logo.png")}}" alt=""></a>
+                        <a class="navbar-brand" href="/">
+                            <x-logo />
+                        </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -66,7 +68,9 @@
                     <span class="navbar-toggler-icon">
                       <i class="fas fa-bars"></i>
                     </span>
-                            <img src="{{asset("website/assets/images/sm-logo.png")}}" alt="" class="me-2">
+                    <div class="w-50 d-inline-block">
+                        <x-logo />
+                      </div>
                         </button>
                     </div>
                     <div class="offcanvas-body">
@@ -149,7 +153,9 @@
                 </div>
                 <nav class="navbar navbar-expand-lg navbar-dark bg-light">
                     <div class="container-fluid px-0">
-                        <a class="navbar-brand" href="#"><img src="{{asset("website/assets/images/logo.png")}}" alt=""></a>
+                        <a class="navbar-brand" href="#">
+                            <x-logo />
+                        </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
                             <span class="navbar-toggler-icon"></span>
                         </button>

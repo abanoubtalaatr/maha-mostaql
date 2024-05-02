@@ -17,9 +17,9 @@ class MyProposal extends Component
 
     public function getRecords()
     {
-        return auth()->user()->proposals()->when($this->status, function ($query){
+        return auth()->user()->proposals()->when($this->status, function ($query) {
             $query->where('status', $this->status);
-        })->when($this->created_at, function ($query){
+        })->when($this->created_at, function ($query) {
             $query->orderBy('created_at', $this->created_at);
         })->latest()->paginate(config('app.per_page'));
     }
@@ -28,9 +28,9 @@ class MyProposal extends Component
     {
         $favourite = (new FavouriteService())->projectIsFavourite($projectId, auth()->id());
 
-        if(!$favourite){
+        if (!$favourite) {
             (new FavouriteService())->create($projectId, auth()->id());
-        }else{
+        } else {
             (new FavouriteService())->delete($projectId, auth()->id());
         }
     }
@@ -39,6 +39,7 @@ class MyProposal extends Component
     public function requestToDeliverProposal($proposalId)
     {
         (new ProposalService())->requestToDeliverProposal($proposalId);
+        return redirect()->to(route('user.client.proposals.my_proposals'));
     }
 
     public function render()
