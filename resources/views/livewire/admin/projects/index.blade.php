@@ -34,6 +34,7 @@
                         <th class="text-center">@lang('admin.price')</th>
                         <th class="text-center">@lang('admin.description')</th>
                         <th class="text-center">@lang('admin.period')</th>
+                        <th class="text-center">حالة الدفع</th>
 
                         <th>@lang('site.actions')</th>
                     </tr>
@@ -50,7 +51,9 @@
                             <td>
                                 {{$record->period}}
                             </td>
-
+                            <td>
+                                {{$record->payment_status =='not paid' ? 'لم يتم الدفع' : "تم الدفع"}}
+                            </td>
                             <td>
                                 <div class="actions">
                                      @if($record->status == \App\Constants\ProjectStatus::REVIEW)
