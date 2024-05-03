@@ -9,8 +9,11 @@
 <!-- Main Content-->
 <div class="wrapper d-flex align-items-stretch">
     <!-- start sidebar -->
+    
     <nav id="sidebar">
+
         <div class="pt-1">
+            
             <a href="{{route('home')}}" class="img logo rounded-circle">
                 <x-whiteLogo />
             </a>
@@ -28,7 +31,7 @@
 
                 </div>
             </div>
-
+            
 
             <ul class="list-unstyled components mb-5 sidebar-container">
                 <li class="{{ \App\Helpers\activeUrl('user.owner.projects.all') }}">
@@ -252,7 +255,12 @@
         </div>
     </nav>
     <!-- Page Content  -->
+    
     <div id="content">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars text-white"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
         {{ isset($slot)? $slot : ''}}
         @yield('content')
     </div>

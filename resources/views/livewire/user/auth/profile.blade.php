@@ -1,15 +1,5 @@
 <div>
-    <div class="nav-sm">
-        <div class="logo">
-            <div class="w-25">
-                <x-logo />
-            </div>
-        </div>
-        <button type="button" id="sidebarCollapse" class="btn btn-primary">
-            <i class="fa fa-bars"></i>
-            <span class="sr-only">Toggle Menu</span>
-        </button>
-    </div>
+    
     <section class="main-dash">
         <div class="container">
             <div class="row d-flex justify-content-center">
