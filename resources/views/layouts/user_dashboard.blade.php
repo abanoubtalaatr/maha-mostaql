@@ -261,7 +261,10 @@
                 <i class="fa fa-bars text-white"></i>
                 <span class="sr-only">Toggle Menu</span>
             </button>
-        {{ isset($slot)? $slot : ''}}
+            <div class="mt-3">
+                {{ isset($slot)? $slot : ''}}
+            </div>
+        
         @yield('content')
     </div>
 
