@@ -261,7 +261,7 @@
                 <i class="fa fa-bars text-white"></i>
                 <span class="sr-only">Toggle Menu</span>
             </button>
-            <div class="mt-3">
+            <div class="mt-5">
                 {{ isset($slot)? $slot : ''}}
             </div>
         
