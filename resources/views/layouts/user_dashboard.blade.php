@@ -17,8 +17,10 @@
             <a href="{{route('home')}}" class="img logo rounded-circle">
                 <x-whiteLogo />
             </a>
-            <div class="d-flex mb-1 side-company-card mt-3">
-                <img src="{{asset('website/assets/images/company-logo.png')}}" alt="" class="ms-3 company-logo">
+            <div class="d-flex mb-1 side-company-card mt-3 align-items-center">
+                <div class="w-25" style="margin-inline-end:10px">
+                    <x-logo />
+                </div>
                 <div class="company-info-2 pt-2">
                     <h5>مُعيين</h5>
                     <p>مكة , السعودية</p>

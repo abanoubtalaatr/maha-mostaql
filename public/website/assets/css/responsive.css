@@ -64,12 +64,12 @@
   .download {
     height: 475px;
   }
-  .btn.btn-primary {
+  #sidebarCollapse {
     position: fixed;
     top: 20px;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
     z-index: 3;
-    right: 20px;
+    left: 20px;
   }
   .job-card ol li {
     margin-right: 0px;
@@ -408,13 +408,14 @@
     max-width: 250px;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
   }
-  .btn.btn-primary {
+  #sidebarCollapse{
     position: fixed;
-    /* top: 10px; */
+    top: 10px;
     /* box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important; */
     z-index: 5555;
     background-color: #1a345f;
     margin-bottom: 20px;
+    left: 20px;
   }
   /* .btn-1 {
     padding: 10px 25px;
