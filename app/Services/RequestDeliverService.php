@@ -35,10 +35,10 @@ class RequestDeliverService
 
 
         // send notification to accept your request
-        $this->sendGridService->sendMail('مبروك تم قبول طلب تسليمك علي المشروع', $proposal->user->email,$data,'emails.proposal.accept_request_deliver');
+        $this->sendGridService->sendMail('مبروك تم قبول طلب تسليمك علي المشروع', $proposal->user->email, $data, 'emails.Proposal.accept_request_deliver');
         // append in wallet with user id , amount (proposal dues) , proposal id, status ,
 
-        $this->walletService->create($proposalId, $proposal->user->id,$proposal->dues,WalletStatus::PENDING, WalletType::PROJECT_FEE);
+        $this->walletService->create($proposalId, $proposal->user->id, $proposal->dues, WalletStatus::PENDING, WalletType::PROJECT_FEE);
 
 
         //update proposal accept request then update update the proposal status

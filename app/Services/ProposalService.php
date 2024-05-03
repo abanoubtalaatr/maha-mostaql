@@ -66,7 +66,7 @@ class ProposalService
 
         $data['project'] = $proposal->project;
 
-        (new SendGridService())->sendMail('طلب تسليم الصفقة', $proposal->user->email, $data, 'emails.proposal.request_deliver_project');
+        (new SendGridService())->sendMail('طلب تسليم الصفقة', $proposal->user->email, $data, 'emails.Proposal.request_deliver_project');
 
         $proposal->update(['request_to_deliver' => 1, 'status_request_to_deliver' => RequestDeliverStatus::PENDING]);
     }
