@@ -54,6 +54,7 @@ Route::group([
                 Route::group(['prefix' => 'proposals', 'as' => 'proposals.'], function () {
                     Route::get('/my-proposals', \App\Http\Livewire\User\Dashboard\Proposal\MyProposal::class)->name('my_proposals');
                     Route::get('{project}/create', \App\Http\Livewire\User\Dashboard\Proposal\Create::class)->name('create');
+                    Route::get('/{proposal}/edit', \App\Http\Livewire\User\Dashboard\Proposal\Edit::class)->name('edit');
                 });
             });
 
