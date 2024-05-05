@@ -19,6 +19,7 @@ class PayPalPaymentService
         $url =  url('/') . "/api/payment?payment_type=paypal&amount=$amount&us=" . $data['id'];
 
 
+
         $response = $provider->createOrder([
             "intent" => "CAPTURE",
             "application_context" => [
@@ -40,7 +41,8 @@ class PayPalPaymentService
             // redirect to approve href
             foreach ($response['links'] as $links) {
                 if ($links['rel'] == 'approve') {
-
+                    $url = url('/') . "/payment?payment_type=paypal&project=$projectId&amount=$amount&us=" . $data['id'];
+                    dd($url, $links['href']);
                     return $links['href'];
                 }
             }
