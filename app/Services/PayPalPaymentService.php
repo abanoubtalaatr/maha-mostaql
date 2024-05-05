@@ -42,7 +42,7 @@ class PayPalPaymentService
             foreach ($response['links'] as $links) {
                 if ($links['rel'] == 'approve') {
                     $url = url('/') . "/payment?payment_type=paypal&project=$projectId&amount=$amount&us=" . $data['id'];
-                    dd($url, $links['href']);
+                    // dd($url, $links['href']);
                     return $links['href'];
                 }
             }
