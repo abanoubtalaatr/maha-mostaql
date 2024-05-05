@@ -23,7 +23,7 @@ class PayPalPaymentService
             "intent" => "CAPTURE",
             "application_context" => [
                 "return_url" => url('/') . "/payment?payment_type=paypal&project=$projectId&amount=$amount&us=" . $data['id'],
-                //                "cancel_url" => url('/'). "/api/payment?payment_type=paypal&booking_id=". $data['id'],
+                "cancel_url" => url('/') . "/api/payment/fail",
             ],
             "purchase_units" => [
                 0 => [

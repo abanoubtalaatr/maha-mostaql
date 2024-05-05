@@ -19,7 +19,7 @@ use App\Http\Livewire\Admin\Admins\Create as AdminCreate;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-
+use Illuminate\Http\Request;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -105,5 +105,8 @@ Route::get('payment', function (\Illuminate\Http\Request $request) {
     $walletType = \App\Constants\WalletType::CHARGE;
     (new \App\Services\WalletService())->create(null, $userId, $amount, $status, $walletType);
     return redirect()->to(\route('user.request_withdraws'));
+});
+Route::get('fail', function (Request $request) {
+    dd($request->all());
 });
 require __DIR__ . '/website.php';
