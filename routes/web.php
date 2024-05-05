@@ -115,7 +115,7 @@ Route::get('payment', function (\Illuminate\Http\Request $request) {
     }
     return redirect()->to(route('fail_payment'));
 });
-Route::get('fail', function (Request $request) {
+Route::get('payment/fail', function (Request $request) {
     dd($request->all());
 })->name('fail_payment');
 require __DIR__ . '/website.php';
