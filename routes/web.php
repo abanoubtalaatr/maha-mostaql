@@ -1,5 +1,6 @@
 <?php
 
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use App\Models\Project;
 use App\Constants\PaymentStatus;
 use Illuminate\Support\Facades\Route;
@@ -96,17 +97,25 @@ Route::group([
 Route::get('payment', function (\Illuminate\Http\Request $request) {
     $userId = $request->input('us');
     $amount = $request->input('amount');
-    $projectId = $request->input('project');
-    if ($projectId) {
-        $project = Project::find($projectId);
-        $project->update(['payment_status' => PaymentStatus::PAID]);
+    $provider = new PayPalClient;
+    $provider->setApiCredentials(config('paypal'));
+    $provider->getAccessToken();
+    $response = $provider->capturePaymentOrder($request['token']);
+    if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+
+        $projectId = $request->input('project');
+        if ($projectId) {
+            $project = Project::find($projectId);
+            $project->update(['payment_status' => PaymentStatus::PAID]);
+        }
+        $status = \App\Constants\WalletStatus::CAN_DRAW_WIDTH;
+        $walletType = \App\Constants\WalletType::CHARGE;
+        (new \App\Services\WalletService())->create(null, $userId, $amount, $status, $walletType);
+        return redirect()->to(\route('user.request_withdraws'));
     }
-    $status = \App\Constants\WalletStatus::CAN_DRAW_WIDTH;
-    $walletType = \App\Constants\WalletType::CHARGE;
-    (new \App\Services\WalletService())->create(null, $userId, $amount, $status, $walletType);
-    return redirect()->to(\route('user.request_withdraws'));
+    return redirect()->to(route('fail_payment'));
 });
 Route::get('fail', function (Request $request) {
     dd($request->all());
-});
+})->name('fail_payment');
 require __DIR__ . '/website.php';
